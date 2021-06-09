@@ -1,0 +1,35 @@
+Package: yyeasy
+Title: Easy Use R
+Version: 0.0.1.1
+Authors@R: 
+    person(given = "Pengdong",
+           family = "Yan",
+           role = c("aut", "cre"),
+           email = "yanpd01@snnu.edu.cn",
+           comment = c(ORCID = "0000-0002-2425-7930"))
+Description: Easy read, Easy write, Easy save, Easy use.
+License: Artistic-2.0
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    ape,
+    data.table,
+    dplyr,
+    ggplot2,
+    ggrepel,
+    grDevices,
+    magrittr,
+    picante,
+    readxl,
+    tibble,
+    tidyr,
+    tools,
+    treeio
+Depends: 
+    R (>= 4.0.0),
+    extrafont,
+    vegan,
+    phyloseq,
+    tidyverse
+biocViews: Sequencing, Microbiome, Metagenomics, DataImport
