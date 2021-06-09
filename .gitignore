@@ -3,7 +3,8 @@
 .Rapp.history
 
 # Rprofile
-.Rprofile
+# .Rprofile
+
 # Session Data files
 .RData
 
