@@ -34,16 +34,19 @@ yyread <- function(filename,
     if (support_excel) {
         excel <- c("xls", "xlsx", "xlsm", "xltx", "xltm")
         if (get_ext(filename) %in% excel) {
-            readxl::read_excel(filename,
-                               col_names = excel_col_names,
-                               col_types = excel_col_types,
-                               ...)
+            tb <- readxl::read_excel(filename,
+                                     col_names = excel_col_names,
+                                     col_types = excel_col_types,
+                                     ...)
         } else {
-            data.table::fread(filename, ...)
+            tmp <- data.table::fread(filename, ...)
+            tb <- tibble::as_tibble(tmp)
         }
     } else {
-        data.table::fread(filename, ...)
+        tmp <- data.table::fread(filename, ...)
+        tb <- tibble::as_tibble(tmp)
     }
+    return(tb)
 }
 
 

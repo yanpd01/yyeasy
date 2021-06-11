@@ -24,7 +24,7 @@ lst_sum <- function(..., names = NULL, rm = TRUE) {
     all <- c(name, names)
     out_list <- list()
     all <- unique(all)
-    for (i in all) {
+    for (i in rev(all)) {
         i_wd <- get(i, envir = globalenv())
         out_list <- c(list(i_wd), out_list)
         names(out_list)[1] <- i
