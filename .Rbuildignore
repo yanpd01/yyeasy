@@ -1,3 +1,4 @@
 ^LICENSE.*$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+plot_out

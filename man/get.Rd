@@ -3,11 +3,14 @@
 \name{get_ext}
 \alias{get_ext}
 \alias{get_sig}
+\alias{get_corr}
 \title{Easy get}
 \usage{
 get_ext(filename, lower = TRUE)
 
-get_sig(df, level = 3, na = FALSE)
+get_sig(df, level = 3, num = FALSE)
+
+get_corr(df, cut = 0.3)
 }
 \arguments{
 \item{filename}{file path}
@@ -18,16 +21,19 @@ get_sig(df, level = 3, na = FALSE)
 
 \item{level}{significance level}
 
-\item{na}{Whether to display negative numbers as NA.}
+\item{num}{display numbers}
+
+\item{cut}{Numbers less than this value are omitted.}
 }
 \value{
 Convert significance numbers to ***.
+Simplified digital display.
 }
 \description{
 Easy get
 }
 \examples{
 get_ext("123.txt")
-get_sig(c(-1,0.00001, 0.0001, 0.001, 0.01, 0.04), level = 5, na = FALSE)
-get_sig(c(-1,0.00001, 0.0001, 0.001, 0.01, 0.04), level = 5, na = TRUE)
+get_sig(c(-1,0.00001, 0.0001, 0.001, 0.01, 0.04), level = 5)
+get_corr(c(0.1, 0.5, 06))
 }

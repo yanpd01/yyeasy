@@ -4,7 +4,6 @@
 #' Function from data.table, readxl and ggplot.
 #' @rdname read
 #'
-#' @inheritParams readxl::read_excel
 #' @param filename filename
 #' @param support_excel TRUE or FALSE
 #' @param excel_col_names TRUE to use the first row as column names,
@@ -20,13 +19,16 @@
 #' A list cell loads a column as a list of length 1 vectors,
 #' which are typed using the type guessing logic from col_types = NULL,
 #' but on a cell-by-cell basis.
-#' @param ... others values from ?readxl::read_excel, ?data.table::fread and ?ggsave.
+#' @param rownames logical; TRUE means use the first column as rownames,
+#' FALSE (default) means no rownames.
+#' @param ... others values from ?readxl::read_excel, ?data.table::fread.
 #'
 #' @examples
 #' ?data.table::fread
 #' ?readxl::read_excel
 #' @export
 yyread <- function(filename,
+                   rownames = FALSE,
                    support_excel = TRUE,
                    excel_col_names = TRUE,
                    excel_col_types = NULL,
@@ -46,6 +48,8 @@ yyread <- function(filename,
         tmp <- data.table::fread(filename, ...)
         tb <- tibble::as_tibble(tmp)
     }
+    if (rownames)
+        tb <- tb %>% tibble::column_to_rownames(var = colnames(tb)[1])
     return(tb)
 }
 
@@ -57,6 +61,7 @@ yyread <- function(filename,
 #' @param sep The separator between columns.
 #' Default "," for "csv" file; "\\t" otherswise.
 #' @param eol Default "\\n", you can also use "\\r\\n" and "\\r".
+#' @param rownames Logical value, whether to save the rownames.
 #'
 #' @examples
 #' ?data.table::fwrite
@@ -65,13 +70,18 @@ yywrite <-
     function(x,
              file = "",
              sep,
-             eol = c("\n", "\r\n", "\r")) {
+             eol = c("\n", "\r\n", "\r"),
+             rownames = FALSE) {
         if (missing(sep)) {
             if (get_ext(file) == "csv") {
                 sep <- ","
             } else {
                 sep <- "\t"
             }
+        }
+        if (rownames) {
+            x <- as.data.frame(x)
+            x <- tibble::rownames_to_column(x)
         }
         eol <- match.arg(eol)
         data.table::fwrite(
@@ -83,7 +93,12 @@ yywrite <-
     }
 
 
-#' @rdname read
+
+
+#' yyplot
+#'
+#' Save ggplot object or create plot device.
+#' @rdname yyplot
 #'
 #' @inheritParams ggplot2::ggsave
 #' @param compression the type of compression to be used.
@@ -92,12 +107,12 @@ yywrite <-
 #' ?ggplot2::ggsave
 #' @export
 yysave <- function(plot = last_plot(),
-                   filename,
-                   path = "plot_dir",
+                   filename = "Rplot%03d.tif",
                    width = 8,
-                   height = 7.5,
-                   units = "cm",
-                   dpi = 1200,
+                   height = 6,
+                   path = "./plot_out",
+                   units = c("cm", "in"),
+                   dpi = 600,
                    compression = "lzw",
                    ...) {
     if (!dir.exists(path))
@@ -139,3 +154,96 @@ yysave <- function(plot = last_plot(),
         )
     }
 }
+
+#' @rdname yyplot
+#'
+#' @param ... others values from svglite::svglite, grDevices::cairo_pdf,
+#' grDevices::tiff, grDevices::jpeg, grDevices::png.
+#' @param verbose logical, whether to display prompts.
+#'
+#' @examples
+#' \dontrun{
+#' ## build device
+#' yydev("tmp001.tif")
+#' ggplot(mtcars, aes(mpg, wt)) +
+#'   geom_point()
+#' dev.off()
+#'
+#' ## Export the ggplot image directly.
+#' ggplot(mtcars, aes(mpg, wt)) +
+#'   geom_point()
+#' yyexport("tmp002.pdf")
+#' }
+#'
+yydev <- function(
+    filename = "Rplot%03d.tif",
+    width = 8,
+    height = 6,
+    path = "./plot_out",
+    dpi = 600,
+    verbose = TRUE,
+    ...) {
+    ## exist
+    if (!dir.exists(path))
+        dir.create(path)
+    ## path
+    ext <- get_ext(filename)
+    fpath <- paste0(path, "/", filename)
+    ## if
+
+    if (ext %in% c("svg")) {
+        svglite::svglite(filename = fpath,
+                         width = width/2.54, height = height/2.54, ...)
+    } else if (ext %in% c("pdf")) {
+        grDevices::cairo_pdf(filename = fpath,
+                             width = width/2.54, height = height/2.54, ...)
+    } else if (ext %in% c("tiff", "tif")) {
+        grDevices::tiff(filename = fpath,
+                        width = width, height = height,
+                        units = "cm", res = dpi, compression = "lzw", ...)
+    } else if (ext %in% c("jpg", "jpeg")) {
+        grDevices::jpeg(filename = fpath,
+                        width = width, height = height,
+                        units = "cm", res = dpi, ...)
+    } else if (ext %in% c("png")) {
+        grDevices::png(filename = fpath,
+                       width = width, height = height,
+                       units = "cm", res = dpi, ...)
+    } else {
+        stop("yyexport supports only svg, pdf, tif, jpg and png")
+    }
+    if (verbose)
+    print("Don't forget to type dev.off().")
+    invisible()
+}
+
+
+
+#' @rdname yyplot
+#' @export
+yyexport <- function(plot = last_plot(),
+                     filename = "Rplot%03d.tif",
+                     width = 8,
+                     height = 6,
+                     path = "./plot_out",
+                     dpi = 600,
+                     ...) {
+    yydev(
+        filename = filename,
+        width = width,
+        height = height,
+        path = path,
+        dpi = dpi,
+        verbose = FALSE,
+        ...
+
+    )
+    grid::grid.draw(plot)
+    grDevices::dev.off()
+    invisible()
+}
+
+
+
+
+

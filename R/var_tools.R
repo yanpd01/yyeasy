@@ -12,13 +12,14 @@
 #' a01 <- 1
 #' a02 <- 2
 #' b03 <- 1
-#' all <- lst_sum(b03, names=ls(pattern = "a0"))
+#' all <- lst_mv(b03, names=ls(pattern = "a0"))
 #'
 #' @export
-lst_sum <- function(..., names = NULL, rm = TRUE) {
+lst_mv <- function(..., names = NULL, rm = TRUE) {
     dots <- match.call(expand.dots = FALSE)$...
     if (length(dots) &&
-        !all(vapply(dots, function(x) is.symbol(x), NA, USE.NAMES = FALSE)))
+        !all(vapply(dots, function(x)
+            is.symbol(x), NA, USE.NAMES = FALSE)))
         stop("... can`t be character strings")
     name <- vapply(dots, as.character, "")
     all <- c(name, names)
@@ -50,7 +51,8 @@ lst_sum <- function(..., names = NULL, rm = TRUE) {
 rename_var <- function(...) {
     dots <- match.call(expand.dots = FALSE)$...
     if (length(dots) != 2 ||
-        !all(vapply(dots, function(x) is.symbol(x), NA, USE.NAMES = FALSE)))
+        !all(vapply(dots, function(x)
+            is.symbol(x), NA, USE.NAMES = FALSE)))
         stop("... can`t be character string,
              and only two items are allowed.")
     names <- vapply(dots, as.character, "")
