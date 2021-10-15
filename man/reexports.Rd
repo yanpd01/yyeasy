@@ -4,10 +4,9 @@
 \name{reexports}
 \alias{reexports}
 \alias{\%>\%}
-\alias{\%<>\%}
 \alias{\%T>\%}
-\alias{\%$\%}
 \alias{read.newick}
+\alias{clipboard}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -15,7 +14,9 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{magrittr}{\code{\link[magrittr:exposition]{\%$\%}}, \code{\link[magrittr:compound]{\%<>\%}}, \code{\link[magrittr:pipe]{\%>\%}}, \code{\link[magrittr:tee]{\%T>\%}}}
+  \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}, \code{\link[magrittr:tee]{\%T>\%}}}
+
+  \item{readr}{\code{\link[readr]{clipboard}}}
 
   \item{treeio}{\code{\link[treeio]{read.newick}}}
 }}

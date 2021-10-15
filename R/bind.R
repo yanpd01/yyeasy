@@ -12,7 +12,7 @@
 #' ?cbind
 #' ?dplyr::bind_cols
 #' @export
-yycbind <- function(x, y, by) {
+bind_cols_identical <- function(x, y, by) {
     x <- as.data.frame(x)
     y <- as.data.frame(y)
     if (!missing(by)) {

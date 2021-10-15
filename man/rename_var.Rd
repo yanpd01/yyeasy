@@ -4,12 +4,10 @@
 \alias{rename_var}
 \title{Rename var}
 \usage{
-rename_var(old_var_name, new_var_name)
+rename_var(...)
 }
 \arguments{
-\item{old_var_name}{The name of the old variable.}
-
-\item{new_var_name}{The name of the new variable.}
+\item{...}{The old variable and new variable. Only two items are allowed.}
 }
 \value{
 no return
@@ -19,7 +17,7 @@ Rename var
 }
 \examples{
 a=1
-rename_var("a", "c")
+rename_var(a, c)
 c
 
 }

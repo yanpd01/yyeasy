@@ -3,33 +3,23 @@
 \name{yyread}
 \alias{yyread}
 \alias{yywrite}
-\alias{yysave}
 \title{Read Write Save}
 \usage{
 yyread(
   filename,
+  rownames = FALSE,
   support_excel = TRUE,
   excel_col_names = TRUE,
   excel_col_types = NULL,
   ...
 )
 
-yywrite(x, file = "", sep, eol = c("\\n", "\\r\\n", "\\r"))
-
-yysave(
-  plot = last_plot(),
-  filename,
-  path = "plot_dir",
-  width = 8,
-  height = 7.5,
-  units = "cm",
-  dpi = 1200,
-  compression = "lzw",
-  ...
-)
+yywrite(x, file = "", sep, eol = c("\\n", "\\r\\n", "\\r"), rownames = FALSE)
 }
 \arguments{
 \item{filename}{filename}
+
+\item{rownames}{Logical value, whether to save the rownames.}
 
 \item{support_excel}{TRUE or FALSE}
 
@@ -48,7 +38,7 @@ A list cell loads a column as a list of length 1 vectors,
 which are typed using the type guessing logic from col_types = NULL,
 but on a cell-by-cell basis.}
 
-\item{...}{others values from ?readxl::read_excel, ?data.table::fread and ?ggsave.}
+\item{...}{others values from ?readxl::read_excel, ?data.table::fread.}
 
 \item{x}{df, matrix}
 
@@ -58,24 +48,6 @@ but on a cell-by-cell basis.}
 Default "," for "csv" file; "\\t" otherswise.}
 
 \item{eol}{Default "\\n", you can also use "\\r\\n" and "\\r".}
-
-\item{plot}{Plot to save, defaults to last plot displayed.}
-
-\item{path}{Path to the xls/xlsx file.}
-
-\item{width}{Plot size in \code{units} ("in", "cm", or "mm").
-If not supplied, uses the size of current graphics device.}
-
-\item{height}{Plot size in \code{units} ("in", "cm", or "mm").
-If not supplied, uses the size of current graphics device.}
-
-\item{units}{Plot size in \code{units} ("in", "cm", or "mm").
-If not supplied, uses the size of current graphics device.}
-
-\item{dpi}{Plot resolution. Also accepts a string input: "retina" (320),
-"print" (300), or "screen" (72). Applies only to raster output types.}
-
-\item{compression}{the type of compression to be used.}
 }
 \description{
 Easy read, easy write, easy save.
@@ -85,5 +57,4 @@ Function from data.table, readxl and ggplot.
 ?data.table::fread
 ?readxl::read_excel
 ?data.table::fwrite
-?ggplot2::ggsave
 }
