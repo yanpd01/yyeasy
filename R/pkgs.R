@@ -1,18 +1,51 @@
-# for attach  auto library ----------------------------------------------------
-run_install <-  function (package, update =  FALSE, ...) {
+## install  ----------------------------------------------------
 
-    if (!requireNamespace(package, quietly = TRUE)) {
-        BiocManager::install(package, update = update)
+#' @rdname load
+#' @export
+#' @inheritParams BiocManager::install
+#' @inheritParams utils::install.packages
+yyinstall <-  function(...,
+                       names = NULL,
+                       dependencies = NA,
+                       update = FALSE,
+                       version = BiocManager::version()
+){
+    dots <- match.call(expand.dots = FALSE)$...
+    name <- vapply(dots, as.character, "")
+    all <- c(name, names)
+    tmp_id <- sapply(all, requireNamespace, quietly = TRUE)
+    tmp_pkgs <- all[!tmp_id]
+    if (length(tmp_pkgs)) {
+    BiocManager::install(
+        tmp_pkgs,
+        dependencies = dependencies,
+        update = update,
+        version = version
+    )
     }
-    invisible()
+    pkg_lst <- sapply(all, requireNamespace, quietly = TRUE)
+    packageStartupMessage("\nThe install status:")
+    return(pkg_lst)
 }
 
+#' @export
+#' @rdname load
+yyuninstall <- function(...,
+                        names = NULL
+                        ) {
+    dots <- match.call(expand.dots = FALSE)$...
+    name <- vapply(dots, as.character, "")
+    all <- c(name, names)
+    utils::remove.packages(all)
+}
+
+## auto library ------------------------------------------------
 run_library <- function(pkg,
                         character.only = TRUE,
                         quietly = TRUE,
                         warn.conflicts = FALSE
                         ) {
-    if (!requireNamespace(pkg)) return(FALSE)
+    if (!requireNamespace(pkg, quietly = TRUE)) return(FALSE)
     loc <- if (pkg %in% loadedNamespaces()) dirname(getNamespaceInfo(pkg, "path"))
     do.call(
         "library",
@@ -52,6 +85,7 @@ run_unload <- function(pkg) {
     invisible()
 }
 
+## yyload ----------------------------------------------------
 #' yyload
 #'
 #' library packages.
@@ -64,45 +98,42 @@ run_unload <- function(pkg) {
 #' @export
 yyload <- function(..., names = NULL, show.conflict = TRUE) {
     dots <- match.call(expand.dots = FALSE)$...
-    if (length(dots) &&
-        !all(vapply(dots, function(x)
-            is.symbol(x), NA, USE.NAMES = FALSE)))
-        stop("... can`t be character strings")
     name <- vapply(dots, as.character, "")
     all <- c(name, names)
-    # suppressWarnings(lapply(all, run_install))
-    # suppressMessages(lapply(all, run_install))
-    suppressMessages(suppressWarnings(lapply(all, run_install)))
+    tmp_id <- sapply(all, requireNamespace, quietly = TRUE)
+    tmp_pkgs <- all[!tmp_id]
+    if (length((tmp_pkgs))){
+    if (utils::askYesNo(paste("Whether to install:",
+                              paste(tmp_pkgs, collapse = ", ")
+                              )
+                        )
+        ){
+         BiocManager::install(tmp_pkgs, update = FALSE)
+    }}
     suppressMessages(pkg_lst <- sapply(all, run_library))
-    names(pkg_lst) <- all
     if (show.conflict) print(conflicted::conflict_scout())
     packageStartupMessage("\nThe load status:")
     print(pkg_lst)
 }
 
 
-
-
-#' @param uninstall Logical value, whether to uninstall the installation package.
-#'
 #' @rdname load
 #' @export
 #' @examples
-#' yyload(ggrepel)
-#' yyunload(ggrepel)
-yyunload <- function(..., names = NULL, uninstall = FALSE) {
+#' \dontrun{
+#' yyinstall(ggtext, "ggsci")
+#' yyuninstall(ggtext, "ggsci")
+#'
+#' ## restart R
+#' yyload(ggtext, "ggsci")
+#' yyunload(ggtext, "ggsci")
+#' }
+yyunload <- function(..., names = NULL) {
     dots <- match.call(expand.dots = FALSE)$...
-    if (length(dots) &&
-        !all(vapply(dots, function(x)
-            is.symbol(x), NA, USE.NAMES = FALSE)))
-        stop("... can`t be character strings")
     name <- vapply(dots, as.character, "")
     all <- c(name, names)
     pkg_lst <- sapply(all, run_unload)
     packageStartupMessage("The unload status:")
     print(pkg_lst)
-    if (uninstall) {
-        packageStartupMessage("\nThe uninstall status:")
-        invisible(lapply(all, utils::remove.packages))
-    }
 }
+
