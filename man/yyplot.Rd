@@ -70,7 +70,6 @@ grDevices::tiff, grDevices::jpeg, grDevices::png.}
 Save ggplot object or create plot device.
 }
 \examples{
-?ggplot2::ggsave
 \dontrun{
 ## build device
 yydev("tmp001.tif")
@@ -81,7 +80,8 @@ dev.off()
 ## Export the ggplot image directly.
 ggplot(mtcars, aes(mpg, wt)) +
   geom_point()
-yyexport("tmp002.pdf")
+yysave("tmp002.svg")
+yyexport("tmp003.pdf")
 }
 
 }

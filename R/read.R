@@ -1,77 +1,82 @@
-#' Read Write Save
+#' Easily read files
 #'
-#' Easy read, easy write, easy save.
-#' Function from data.table, readxl and ggplot.
-#' @rdname read
+#' Function from data.table, readxl.
+#' @rdname yyread
 #'
 #' @param filename filename
-#' @param support_excel TRUE or FALSE
-#' @param excel_col_names TRUE to use the first row as column names,
-#' FALSE to get default names, or a character vector giving a name for each column.
-#' If user provides col_types as a vector, col_names can have one entry per column,
-#' i.e. have the same length as col_types, or one entry per unskipped column.
-#' @param excel_col_types Either NULL to guess all from the spreadsheet
-#' or a character vector containing one entry per column from these options:
+#' @param rownames Logical; whether to use the first column as the row names.
+#' @param header Logical; whether to use the first row as the col names.
+#' @param excel Logical; whether to read Excel files.
+#' It is strongly recommended to use TSV or CSV files rather than Excel files
+#' @param sheet Excel option; either a string (the name of a sheet),
+#' or an integer (the position of the sheet).
+#' @param col_types Excel option; NULL to guess;
+#' A character vector containing these options:
 #' "skip", "guess", "logical", "numeric", "date", "text" or "list".
 #' If exactly one col_type is specified, it will be recycled.
 #' The content of a cell in a skipped column is never read
 #' and that column will not appear in the data frame output.
-#' A list cell loads a column as a list of length 1 vectors,
-#' which are typed using the type guessing logic from col_types = NULL,
-#' but on a cell-by-cell basis.
-#' @param rownames logical; TRUE means use the first column as rownames,
-#' FALSE (default) means no rownames.
-#' @param ... others values from ?readxl::read_excel, ?data.table::fread.
+#' @param ... Others values from ?readxl::read_excel and ?data.table::fread.
 #'
 #' @examples
-#' ?data.table::fread
-#' ?readxl::read_excel
+#' \dontrun{
+#' yyread("a1.tsv")
+#' yyread("a1.xls", excel = TRUE)
+#' }
 #' @export
 yyread <- function(filename,
                    rownames = FALSE,
-                   support_excel = TRUE,
-                   excel_col_names = TRUE,
-                   excel_col_types = NULL,
+                   header = TRUE,
+                   excel = FALSE,
+                   sheet = NULL,
+                   col_types = NULL,
                    ...) {
-    if (support_excel) {
-        excel <- c("xls", "xlsx", "xlsm", "xltx", "xltm")
-        if (get_ext(filename) %in% excel) {
-            tb <- readxl::read_excel(filename,
-                                     col_names = excel_col_names,
-                                     col_types = excel_col_types,
-                                     ...)
-        } else {
-            tmp <- data.table::fread(filename, ...)
-            tb <- tibble::as_tibble(tmp)
-        }
+    if (excel) {
+            tmp <- readxl::read_excel(filename,
+                                      sheet = sheet,
+                                      col_names = header,
+                                      col_types = col_types,
+                                      ...)
     } else {
-        tmp <- data.table::fread(filename, ...)
-        tb <- tibble::as_tibble(tmp)
+        tmp <- data.table::fread(filename, header = header, ...)
     }
+    df <- as.data.frame(tmp)
     if (rownames)
-        tb <- tb %>% tibble::column_to_rownames(var = colnames(tb)[1])
-    return(tb)
+        df <- df %>% tibble::column_to_rownames(var = colnames(df)[1])
+    return(df)
 }
 
 
-#' @rdname read
+#' Easily write files
 #'
-#' @param x df, matrix
-#' @param file Output file name. "" indicates output to the console.
+#' Function from data.table.
+#' @rdname yywrite
+#'
+#' @inheritParams data.table::fwrite
 #' @param sep The separator between columns.
 #' Default "," for "csv" file; "\\t" otherswise.
 #' @param eol Default "\\n", you can also use "\\r\\n" and "\\r".
-#' @param rownames Logical value, whether to save the rownames.
+#' @param ... others values from ?data.table::fwrite.
 #'
 #' @examples
-#' ?data.table::fwrite
+#' \dontrun{
+#' a1 <- data.frame(matrix(1:9, 3))
+#' yywrite(a1, "a1.tsv")
+#' yywrite(a1, "a1.csv")
+#' rownames(a1) <- letters[1:3]
+#' yywrite(a1, "a1_name.tsv", row.names = TRUE)
+#' yywrite(a1, "a1_name_no_colname.tsv", row.names = TRUE, col.names = FALSE)
+#' }
 #' @export
 yywrite <-
     function(x,
              file = "",
+             row.names = FALSE,
+             col.names = TRUE,
              sep,
              eol = c("\n", "\r\n", "\r"),
-             rownames = FALSE) {
+             ...
+             ) {
         if (missing(sep)) {
             if (get_ext(file) == "csv") {
                 sep <- ","
@@ -79,16 +84,15 @@ yywrite <-
                 sep <- "\t"
             }
         }
-        if (rownames) {
-            x <- as.data.frame(x)
-            x <- tibble::rownames_to_column(x)
-        }
         eol <- match.arg(eol)
         data.table::fwrite(
             x = x,
             file = file,
+            row.names = row.names,
+            col.names = col.names,
             sep = sep,
-            eol = eol
+            eol = eol,
+            ...
         )
     }
 
@@ -103,8 +107,6 @@ yywrite <-
 #' @inheritParams ggplot2::ggsave
 #' @param compression the type of compression to be used.
 #'
-#' @examples
-#' ?ggplot2::ggsave
 #' @export
 yysave <- function(plot = last_plot(),
                    filename = "Rplot%03d.tif",
@@ -172,7 +174,8 @@ yysave <- function(plot = last_plot(),
 #' ## Export the ggplot image directly.
 #' ggplot(mtcars, aes(mpg, wt)) +
 #'   geom_point()
-#' yyexport("tmp002.pdf")
+#' yysave("tmp002.svg")
+#' yyexport("tmp003.pdf")
 #' }
 #'
 yydev <- function(
