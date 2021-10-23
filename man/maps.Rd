@@ -6,16 +6,11 @@
 \alias{coord_rev}
 \title{Map tools}
 \usage{
-coord_trans2gaode(
-  coord,
-  type = "baidu",
-  key = "f538a09476ee5a6d62b457684b6c32a5",
-  output = "JSON"
-)
+coord_trans2gaode(coord, type = "baidu", key = amap_key, output = "JSON")
 
-coord_get(address, key = "f538a09476ee5a6d62b457684b6c32a5", output = "JSON")
+coord_get(address, key = amap_key, output = "JSON")
 
-coord_rev(coord, key = "f538a09476ee5a6d62b457684b6c32a5", output = "JSON")
+coord_rev(coord, key = amap_key, output = "JSON")
 }
 \arguments{
 \item{coord}{string, Latitude follows longitude, separated by commas.\\n

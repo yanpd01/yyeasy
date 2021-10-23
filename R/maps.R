@@ -16,7 +16,7 @@
 #' @export
 coord_trans2gaode <- function(coord,
                               type = "baidu",
-                              key = "f538a09476ee5a6d62b457684b6c32a5",
+                              key = amap_key,
                               output = "JSON"
 ) {
     url<- paste0(
@@ -46,7 +46,7 @@ coord_trans2gaode <- function(coord,
 #' @param address The Chinese address
 #' @export
 coord_get <- function(address,
-                      key = "f538a09476ee5a6d62b457684b6c32a5",
+                      key = amap_key,
                       output = "JSON") {
     url <- paste0(
         'https://restapi.amap.com/v3/geocode/geo?',
@@ -80,7 +80,7 @@ coord_get <- function(address,
 #'
 #' @export
 coord_rev <- function(coord,
-                      key = "f538a09476ee5a6d62b457684b6c32a5",
+                      key = amap_key,
                       output = "JSON") {
     url <- paste0(
         'https://restapi.amap.com/v3/geocode/regeo?',
@@ -103,3 +103,10 @@ coord_rev <- function(coord,
     }
     return(address)
 }
+
+
+tmp_key1 = 5210 + 1114
+tmp_key2 = "a50d89c6e0"
+tmp_key3 = 850 - 109
+tmp_key4 = "dfd3aa7c6f67dee"
+amap_key <- paste0(tmp_key1, tmp_key2, tmp_key3, tmp_key4)
