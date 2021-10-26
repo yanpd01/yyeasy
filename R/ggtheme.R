@@ -12,11 +12,9 @@
 #' theme theme_bw theme_classic
 #'
 #' @export
-theme_bw2 <- function(
-    font_size = 10,
-    font = "sans",
-    line_size = 0.5
-) {
+theme_bw2 <- function(font_size = 10,
+                      font = "sans",
+                      line_size = 0.5) {
     ## 四周型主题
     theme_bw() %+replace%
         theme(
@@ -50,11 +48,9 @@ theme_bw2 <- function(
 #' p + theme_bw2(font_size = 15, line_size = 2)
 #' p + theme_classic2(font_size = 15, line_size = 2)
 #' @export
-theme_classic2 <- function(
-    font_size = 10,
-    font = "sans",
-    line_size = 0.5
-) {
+theme_classic2 <- function(font_size = 10,
+                           font = "sans",
+                           line_size = 0.5) {
     ## 常规xy轴主题
     theme_classic() %+replace%
         theme(

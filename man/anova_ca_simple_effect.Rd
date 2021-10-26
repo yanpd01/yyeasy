@@ -30,5 +30,4 @@ anova_cca/rda_simple_effect
 data(dune)
 data(dune.env)
 anova_ca_simple_effect(dune, dune.env, "RDA", 499)
-
 }

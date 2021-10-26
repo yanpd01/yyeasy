@@ -10,14 +10,12 @@
 #' data(dune)
 #' data(dune.env)
 #' anova_ca_simple_effect(dune, dune.env, "RDA", 499)
-#'
 #' @export
 anova_ca_simple_effect <-
     function(data,
              env,
              fun = c("RDA", "CCA"),
-             permutations = permute::how(nperm = 999)
-    ) {
+             permutations = permute::how(nperm = 999)) {
         data <- as.data.frame(data)
         env <- as.data.frame(env)
         out_df <- data.frame()
@@ -33,10 +31,10 @@ anova_ca_simple_effect <-
                 rda_cca %>%
                 vegan::anova.cca(by = "terms", permutations = permutations) %>%
                 as.data.frame()
-            tmp_df <- tmp_df[1,] %>%
+            tmp_df <- tmp_df[1, ] %>%
                 tibble::rownames_to_column(paste0(fun, "~vars"))
             out_df <- rbind(out_df, tmp_df)
         }
-        out_df <- out_df[order(out_df$`Pr(>F)`),]
+        out_df <- out_df[order(out_df$`Pr(>F)`), ]
         return(out_df)
     }

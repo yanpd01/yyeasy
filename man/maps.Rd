@@ -39,5 +39,4 @@ NOTE: These functions only supoort chinese address.
 coord_get("chinese address")
 coord_rev("108.952560,34.204798")
 coord_trans2gaode("108.952560,34.204798")
-
 }

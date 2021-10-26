@@ -19,5 +19,3 @@ readr::clipboard
 # ## for depends and attach (move to auto library)------------------------------------------------------
 # #' at import vegan
 # NULL
-
-

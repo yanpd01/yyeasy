@@ -18,8 +18,7 @@ pca_plot(
   legend = FALSE,
   point_size = 2,
   font = "sans",
-  font_size = 10,
-  returns = c("plot", "data")
+  font_size = 10
 )
 
 pcoa_plot(
@@ -31,21 +30,18 @@ pcoa_plot(
   point_size = 2,
   font = "sans",
   font_size = 10,
-  returns = c("plot", "data")
+  ...
 )
 
 nmds_plot(
-  dist_or_df,
+  dist,
   group,
-  veddist_method = "bray",
-  autotransform = FALSE,
-  trace = FALSE,
   label = TRUE,
   legend = FALSE,
   point_size = 2,
   font = "sans",
   font_size = 10,
-  returns = c("plot", "data")
+  ...
 )
 }
 \arguments{
@@ -72,24 +68,9 @@ nmds_plot(
 
 \item{font_size}{font size}
 
-\item{returns}{return plot or axis}
+\item{dist}{dist.}
 
-\item{dist}{dist}
-
-\item{dist_or_df}{Community, otu , species data, Alternatively,
-dissimilarities either as a dist structure .}
-
-\item{veddist_method}{Dissimilarity index, partial match to
-"manhattan", "euclidean", "canberra", "clark", "bray", "kulczynski",
-"jaccard", "gower", "altGower", "morisita", "horn", "mountford", "raup",
-"binomial", "chao", "cao", "mahalanobis", "chisq" or "chord".}
-
-\item{autotransform}{Use simple heuristics for possible data transformation
-of typical community data (see below). If you do not have community data,
-you should probably set autotransform = FALSE.}
-
-\item{trace}{FALSE or unmber,
-Trace the function; trace = 2 or higher will be more voluminous.}
+\item{...}{Other params from ?ape::pcoa and ?vegan::metaMDS}
 }
 \value{
 alpha dist
@@ -103,14 +84,10 @@ Plot the PCA PCoa NMDS.
 data(its)
 indexs <- alpha_index(its)
 indexs
-
 data(its)
 otu_t <- t(its)
 pca_plot(otu_t)
-tree <- ape::rtree(nrow(its), rooted = TRUE, tip.label = rownames(its))
 bray_dist <- vegan::vegdist(otu_t)
 pcoa_plot(bray_dist)
 nmds_plot(bray_dist)
-nmds_plot(otu_t)
-
 }

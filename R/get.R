@@ -13,4 +13,3 @@ get_ext <- function(filename, lower = TRUE) {
     if (lower == TRUE) ext <- tolower(ext)
     ext
 }
-

@@ -23,6 +23,5 @@ Move the var to a new specified list.
 a01 <- 1
 a02 <- 2
 b03 <- 1
-all <- lst_mv(b03, names=ls(pattern = "a0"))
-
+all <- lst_mv(b03, names = ls(pattern = "a0"))
 }

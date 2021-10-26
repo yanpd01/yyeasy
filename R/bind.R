@@ -25,20 +25,22 @@ bind_cols_identical <- function(x, y, by) {
             stop(
                 "if the input data doesn't have rownames,
                  You should specify a column as ROWNAMES
-                 using 'by'='your_id'. ")
+                 using 'by'='your_id'. "
+            )
         }
     }
     if (identical(rownames(x), rownames(y))) {
         df <- dplyr::bind_cols(x, y)
     } else {
-        y <- y[rownames(x),]
+        y <- y[rownames(x), ]
         df <- dplyr::bind_cols(x, y)
     }
     if (!identical(rownames(x), rownames(y))) {
         warning(
             "Tables don't have same rownames,
             Tables don't have same rownames,
-            Tables don't have same rownames.")
+            Tables don't have same rownames."
+        )
     }
     return(df)
 }
