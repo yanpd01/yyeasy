@@ -57,5 +57,4 @@ ggplot(mtcars, aes(mpg, wt)) +
     geom_point()
 yyexport("tmp003.pdf")
 }
-
 }
