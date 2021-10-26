@@ -128,7 +128,7 @@ yywrite <-
 #'     geom_point()
 #' yyexport("tmp003.pdf")
 #' }
-#'
+#' @export
 yydev <- function(filename = "Rplot%03d.tif",
                   width = 8,
                   height = 6,
