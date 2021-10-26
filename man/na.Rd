@@ -22,13 +22,11 @@ Remove all na cols, or rows
 df <- 1:20 \%>\% matrix(nrow = 5)
 df[2, 4] <- NA
 df[5, 2] <- NA
-df[1,] <- NA
+df[1, ] <- NA
 df[, 3] <- NA
 rownames(df) <- letters[1:5]
 colnames(df) <- letters[6:9]
-rm_NAs(df, margin=1)
-rm_NAs(df, margin=2)
-rm_NAs(df, margin=0)
-
-
+rm_NAs(df, margin = 1)
+rm_NAs(df, margin = 2)
+rm_NAs(df, margin = 0)
 }

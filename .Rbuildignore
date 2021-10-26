@@ -1,4 +1,6 @@
 ^LICENSE.*$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-plot_out
+^plot_out$
+^.*\.code-workspace$
+^devtools.r$

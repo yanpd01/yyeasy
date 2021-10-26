@@ -16,8 +16,7 @@ no return
 Rename var
 }
 \examples{
-a=1
+a <- 1
 rename_var(a, c)
 c
-
 }
