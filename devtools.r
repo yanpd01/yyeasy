@@ -8,6 +8,9 @@ usethis::use_package()
 usethis::use_r()
 usethis::use_data()
 
+## install
+devtools::install_github("yanpd01/yyeasy")
+
 
 ## build R package
 
