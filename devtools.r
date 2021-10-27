@@ -12,7 +12,11 @@ usethis::use_r()
 usethis::use_data()
 
 ## install
-devtools::install_github("yanpd01/yyeasy", "develop")
+devtools::install_github(
+    "yanpd01/yyeasy",
+    ref = "develop",
+    upgrade = "never"
+)
 
 
 ## build R package
@@ -33,7 +37,7 @@ usethis::use_r("data") ## 为数据编写R文件
 
 ## 3、annotation --------------------------------------------------------------
 yourname <- function() {
-  ##  这个位置按下 Ctrl+Alt+Shift+R 插入注释框架
+    ##  这个位置按下 Ctrl+Alt+Shift+R 插入注释框架
 }
 devtools::document() ## 转义注释
 

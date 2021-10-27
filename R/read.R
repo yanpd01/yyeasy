@@ -126,7 +126,7 @@ yywrite <-
 #' ## Export the ggplot image directly.
 #' ggplot(mtcars, aes(mpg, wt)) +
 #'     geom_point()
-#' yyexport("tmp003.pdf")
+#' yyexport(filename = "tmp003.pdf")
 #' }
 #' @export
 yydev <- function(filename = "Rplot%03d.tif",
