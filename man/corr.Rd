@@ -11,7 +11,7 @@ get_sig(p_value, level = 3)
 
 get_corr(df, cut = 0.3)
 
-get_corr_sig(df, p_value, level = 3)
+get_corr_sig(df, p_value, sep = "\\n", level = 3)
 }
 \arguments{
 \item{p_value}{p_value table}
@@ -21,6 +21,8 @@ get_corr_sig(df, p_value, level = 3)
 \item{df}{your data}
 
 \item{cut}{Numbers less than this value are omitted.}
+
+\item{sep}{Separator of r and *.}
 }
 \value{
 Convert significance numbers to ***.
