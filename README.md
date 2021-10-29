@@ -11,35 +11,35 @@ remotes::install_git("https://gitee.com/yanpd01/yyeasy")
 
 ## Function
 ### Read and write files.
-yyread()
+yyread()<br>
 yywrite()
 
 ### Save plots
-yysave()
-yydev()
-yyexport()
+yysave()<br>
+yydev()<br>
+yyexport()<br>
 
 ### Plot function
-pca_plot()
-pcoa_plot()
-nmds_plot()
+pca_plot()<br>
+pcoa_plot()<br>
+nmds_plot()<br>
 
 ### ggplot2 themes
-theme_bw2
-theme_classic2
+theme_bw2<br>
+theme_classic2<br>
 
 ### Packages function
-yyinstall()
-yyload()
-yyunload()
-yyuninstall()
+yyinstall()<br>
+yyload()<br>
+yyunload()<br>
+yyuninstall()<br>
 
 ### Maps function
-coord_get()
-coord_rev()
+coord_get()<br>
+coord_rev()<br>
 coord_trans2gaode()
 
 ### Coefficient and significance marker
-get_corr()
-get_corr_sig()
-get_sig()
+get_corr()<br>
+get_corr_sig()<br>
+get_sig()<br>
