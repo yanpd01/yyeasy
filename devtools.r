@@ -12,7 +12,7 @@ usethis::use_r("plot")
 usethis::use_data()
 
 ## install
-devtools::install_github(
+remotes::install_github(
     "yanpd01/yyeasy",
     ref = "develop",
     upgrade = "never"
