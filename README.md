@@ -15,7 +15,6 @@ yyread()<br>
 yywrite()
 
 ### Save plots
-yysave()<br>
 yydev()<br>
 yyexport()<br>
 
