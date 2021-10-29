@@ -5,10 +5,22 @@ A small toolbox for easy use with R.
 
 ## Installation tutorial
 #### from github
+```r
 remotes::install_github("yanpd01/yyeasy")
+```
 #### from gitee
+```r
 remotes::install_git("https://gitee.com/yanpd01/yyeasy")
-
+```
+#### install development version<br>
+(devtools relies on the remotes package  )
+```r
+devtools::install_github(
+    "yanpd01/yyeasy",
+    ref = "develop",
+    upgrade = "never"
+)
+```
 ## Function
 ### Read and write files.
 yyread()<br>
