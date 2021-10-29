@@ -4,42 +4,53 @@
 A small toolbox for easy use with R. 
 
 ## Installation tutorial
-#### from github
+```r
+## from github
 remotes::install_github("yanpd01/yyeasy")
-#### from gitee
+
+## from gitee
 remotes::install_git("https://gitee.com/yanpd01/yyeasy")
 
+## install development version
+## devtools relies on the remotes package
+remotes::install_github(
+    "yanpd01/yyeasy",
+    ref = "develop",
+    upgrade = "never"
+)
+```
 ## Function
-### Read and write files.
-yyread()<br>
+```r
+## Read and write files.
+yyread()
 yywrite()
 
-### Save plots
-yysave()<br>
-yydev()<br>
-yyexport()<br>
+## Save plots
+yydev()
+yyexport()
 
-### Plot function
-pca_plot()<br>
-pcoa_plot()<br>
-nmds_plot()<br>
+## Plot function
+pca_plot()
+pcoa_plot()
+nmds_plot()
 
-### ggplot2 themes
-theme_bw2<br>
-theme_classic2<br>
+## ggplot2 themes
+theme_bw2()
+theme_classic2()
 
-### Packages function
-yyinstall()<br>
-yyload()<br>
-yyunload()<br>
-yyuninstall()<br>
+## Packages function
+yyinstall()
+yyload()
+yyunload()
+yyuninstall()
 
-### Maps function
-coord_get()<br>
-coord_rev()<br>
+## Maps function
+coord_get()
+coord_rev()
 coord_trans2gaode()
 
-### Coefficient and significance marker
-get_corr()<br>
-get_corr_sig()<br>
-get_sig()<br>
+## Coefficient and significance marker
+get_corr()
+get_corr_sig()
+get_sig()
+```
