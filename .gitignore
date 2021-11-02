@@ -39,3 +39,4 @@ vignettes/*.pdf
 plot_out
 .code-workspace
 .history
+.history/*
