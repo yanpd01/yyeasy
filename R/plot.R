@@ -78,7 +78,7 @@ yydev <- function(filename = "Rplot%03d.tif",
     if (verbose) {
           print("Don't forget to type dev.off().")
       }
-    print(paste0("Image will be saved to '", fpath, "'"))
+    print(paste0("Image will be saved to '", fpath, "'."))
     invisible()
 }
 

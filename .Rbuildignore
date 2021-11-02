@@ -1,6 +1,7 @@
 ^LICENSE.*$
-^.*\.Rproj$
-^\.Rproj\.user$
-^plot_out$
-^.*\.code-workspace$
 ^devtools.r$
+^plot_out$
+^\.Rproj$
+^\.Rproj\.user$
+^\.code-workspace$
+^\.Rhistory

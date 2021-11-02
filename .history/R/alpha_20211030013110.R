@@ -1,7 +1,7 @@
 #' alpha
 #'
 #' compute some indexs.
-#' @rdname alpha
+#' @rdname pca
 #' @param otu otu table
 #' @param tree tree
 #' @return alpha dist

@@ -8,7 +8,7 @@ devtools::build()
 
 ### usethis
 usethis::use_package()
-usethis::use_r("beta")
+usethis::use_r("plot")
 usethis::use_data()
 
 ## install
