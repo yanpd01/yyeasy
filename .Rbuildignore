@@ -1,7 +1,8 @@
 ^LICENSE.*$
 ^devtools.r$
 ^plot_out$
-^\.Rproj$
+^.*\.code-workspace$
+^.*\.Rproj$
 ^\.Rproj\.user$
-^\.code-workspace$
 ^\.Rhistory
+^\.history
