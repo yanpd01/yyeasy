@@ -102,7 +102,8 @@ yyexport <- function(plot = last_plot(),
         verbose = FALSE,
         ...
     )
-    grid::grid.draw(plot)
+    # grid::grid.draw(plot)
+    print(plot)
     grDevices::dev.off()
     invisible()
 }
