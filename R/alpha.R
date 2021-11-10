@@ -27,6 +27,6 @@ alpha_index <- function(otu, tree) {
     if (!missing(tree)) {
         index$PD_whole_tree <- picante::pd(tdf, tree, include.root = T)[, 1]
     }
-    index <- tibble::rownames_to_column(index, "id")
+    # index <- tibble::rownames_to_column(index, "id")
     return(index)
 }

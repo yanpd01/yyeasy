@@ -5,6 +5,7 @@
 #' @param df your data
 #' @param p_value p_value table
 #' @param level significance level
+#' @param p_adj_method ?stats::p.adjust.methods
 #'
 #' @return Convert significance numbers to ***.
 #' Simplified digital display.
@@ -14,11 +15,12 @@
 #' get_corr(c(0.1, 0.5, 0.6), cut = 0.2)
 #' get_corr_sig(c(0.1, 0.5, 0.6), c(0.1, 0.04, 0.001))
 #' @export
-get_sig <- function(p_value, level = 3) {
+get_sig <- function(p_value, level = 3, p_adj_method = "none") {
     ## trans
     df <- as.data.frame(p_value)
     dim_0 <- dim(df)
     df <- as.numeric(as.matrix(df))
+    df <- stats::p.adjust(df, method = p_adj_method)
     if (dim_0[2] != 1) dim(df) <- dim_0
     df[is.na(df)] <- 1
     df[df < 0] <- 1
@@ -75,7 +77,13 @@ get_corr <- function(df, cut = 0.3) {
 #' @return paste r and *.
 #' @param sep Separator of r and *.
 #' @export
-get_corr_sig <- function(df, p_value, sep = "\n", level = 3) {
+get_corr_sig <- function(
+    df,
+    p_value,
+    p_adj_method = "none",
+    sep = "\n",
+    level = 3
+    ) {
     df <- as.data.frame(df)
     p_value <- as.data.frame(p_value)
     # dim
@@ -86,7 +94,7 @@ get_corr_sig <- function(df, p_value, sep = "\n", level = 3) {
       }
     # paste
     df_cor <- get_corr(df, cut = 0)
-    df_p <- get_sig(p_value, level = level)
+    df_p <- get_sig(p_value, level = level, p_adj_method = p_adj_method)
     sites_n1 <- df_p == ""
     sites_n2 <- df == 1
     df_out <- paste0(df_cor, sep, df_p)

@@ -7,16 +7,18 @@
 \title{corr p
 Get simplified correlation coefficients and significance stars}
 \usage{
-get_sig(p_value, level = 3)
+get_sig(p_value, level = 3, p_adj_method = "none")
 
 get_corr(df, cut = 0.3)
 
-get_corr_sig(df, p_value, sep = "\\n", level = 3)
+get_corr_sig(df, p_value, p_adj_method = "none", sep = "\\n", level = 3)
 }
 \arguments{
 \item{p_value}{p_value table}
 
 \item{level}{significance level}
+
+\item{p_adj_method}{?stats::p.adjust.methods}
 
 \item{df}{your data}
 

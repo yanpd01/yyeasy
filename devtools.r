@@ -5,6 +5,8 @@ devtools::load_all()
 devtools::unload()
 devtools::build()
 
+# Rcmd.exe INSTALL --no-multiarch --with-keep.source yyeasy
+
 
 ### usethis
 usethis::use_package()

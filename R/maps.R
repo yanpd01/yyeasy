@@ -19,15 +19,19 @@ coord_trans2gaode <- function(coord,
                               key = amap_key,
                               output = "JSON") {
     url <- paste0(
-        "https://restapi.amap.com/v3/assistant/coordinate/convert?",
-        "&key=", key,
+        "https://restapi.amap.com/v3/assistant/coordinate/convert",
+        "?key=", key, ## 第一个参数前用 ? 开头，后续参数以 & 开头
         "&locations=", coord,
         "&coordsys=", type,
         "&output=", output
-    )
+    ) %>%
+        utils::URLencode()
     n <- 1
     while (n <= 5) {
-        tmp_json <- jsonlite::fromJSON(paste(readLines(url, warn = F, encoding = "UTF-8"), collapse = ""))
+        tmp_json <- jsonlite::fromJSON(paste(
+            readLines(url, warn = F, encoding = "UTF-8"),
+            collapse = ""
+        ))
         status <- tmp_json$status
         # Double judgment
         if (status == 1 & length(tmp_json$location) != 0) {
@@ -49,14 +53,18 @@ coord_get <- function(address,
                       key = amap_key,
                       output = "JSON") {
     url <- paste0(
-        "https://restapi.amap.com/v3/geocode/geo?",
-        "&key=", key, ## key
+        "https://restapi.amap.com/v3/geocode/geo",
+        "?key=", key, ## 第一个参数前用 ? 开头，后续参数以 & 开头
         "&address=", address, ## 详细地址
-        "&output=", "JSON"
-    )
+        "&output=", output
+    ) %>%
+        utils::URLencode()
     n <- 1
     while (n <= 5) {
-        tmp_json <- jsonlite::fromJSON(paste(readLines(url, warn = F, encoding = "UTF-8"), collapse = ""))
+        tmp_json <- jsonlite::fromJSON(paste(
+            readLines(url, warn = F, encoding = "UTF-8"),
+            collapse = ""
+        ))
         status <- tmp_json$status
         # Double judgment
         if (status == 1 & length(tmp_json$geocodes) != 0) {
@@ -83,14 +91,18 @@ coord_rev <- function(coord,
                       key = amap_key,
                       output = "JSON") {
     url <- paste0(
-        "https://restapi.amap.com/v3/geocode/regeo?",
-        "&key=", key, ## key
+        "https://restapi.amap.com/v3/geocode/regeo",
+        "?key=", key, ## 第一个参数前用 ? 开头，后续参数以 & 开头
         "&location=", coord, ## 经纬度
-        "&output=", "JSON"
-    )
+        "&output=", output
+    ) %>%
+        utils::URLencode()
     n <- 1
     while (n <= 5) {
-        tmp_json <- jsonlite::fromJSON(paste(readLines(url, warn = F, encoding = "UTF-8"), collapse = ""))
+        tmp_json <- jsonlite::fromJSON(paste(
+            readLines(url, warn = F, encoding = "UTF-8"),
+            collapse = ""
+        ))
         status <- tmp_json$status
         # Double judgment
         if (status == 1 & length(tmp_json$regeocode) != 0) {
