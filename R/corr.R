@@ -76,12 +76,16 @@ get_corr <- function(df, cut = 0.3) {
 #' @rdname corr
 #' @return paste r and *.
 #' @param sep Separator of r and *.
+#' @param rm_no_sig Logical value, whether to remove non-significant values.
+#' @param rm_1 Logical value, whether to remove self-correlation values.
 #' @export
 get_corr_sig <- function(
     df,
     p_value,
     p_adj_method = "none",
     sep = "\n",
+    rm_no_sig = TRUE,
+    rm_1 = TRUE,
     level = 3
     ) {
     df <- as.data.frame(df)
@@ -99,6 +103,7 @@ get_corr_sig <- function(
     sites_n2 <- df == 1
     df_out <- paste0(df_cor, sep, df_p)
     if (dim_0[2] != 1) dim(df_out) <- dim_0
-    df_out[sites_n1 | sites_n2] <- ""
+    if (rm_no_sig) df_out[sites_n1] <- ""
+    if (rm_1)      df_out[sites_n2] <- ""
     return(df_out)
 }

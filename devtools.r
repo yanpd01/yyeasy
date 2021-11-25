@@ -4,9 +4,12 @@ devtools::check()
 devtools::load_all()
 devtools::unload()
 devtools::build()
+# "C:\Program Files\R\R-4.1.2\bin\x64\Rcmd.exe" INSTALL --no-multiarch --with-keep.source yyeasy
 
-# Rcmd.exe INSTALL --no-multiarch --with-keep.source yyeasy
-
+# "/mnt/c/Program Files/R/R-4.1.2/bin/x64/Rcmd.exe" INSTALL \
+#     --no-multiarch \
+#     --with-keep.source \
+#     yyeasy
 
 ### usethis
 usethis::use_package()

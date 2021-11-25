@@ -19,8 +19,8 @@ yydev(
 yyexport(
   plot = last_plot(),
   filename = "Rplot\%03d.tif",
-  width = 8,
-  height = 6,
+  width = 12,
+  height = 12,
   path = "./plot_out",
   dpi = 600,
   ...
@@ -29,8 +29,8 @@ yyexport(
 yysave(
   plot = last_plot(),
   filename = "Rplot\%03d.tif",
-  width = 8,
-  height = 6,
+  width = 12,
+  height = 12,
   path = "./plot_out",
   dpi = 600,
   ...

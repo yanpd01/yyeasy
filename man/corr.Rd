@@ -11,7 +11,15 @@ get_sig(p_value, level = 3, p_adj_method = "none")
 
 get_corr(df, cut = 0.3)
 
-get_corr_sig(df, p_value, p_adj_method = "none", sep = "\\n", level = 3)
+get_corr_sig(
+  df,
+  p_value,
+  p_adj_method = "none",
+  sep = "\\n",
+  rm_no_sig = TRUE,
+  rm_1 = TRUE,
+  level = 3
+)
 }
 \arguments{
 \item{p_value}{p_value table}
@@ -25,6 +33,10 @@ get_corr_sig(df, p_value, p_adj_method = "none", sep = "\\n", level = 3)
 \item{cut}{Numbers less than this value are omitted.}
 
 \item{sep}{Separator of r and *.}
+
+\item{rm_no_sig}{Logical value, whether to remove non-significant values.}
+
+\item{rm_1}{Logical value, whether to remove self-correlation values.}
 }
 \value{
 Convert significance numbers to ***.
