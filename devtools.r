@@ -20,6 +20,13 @@ git push origin :refs/tags/0.0.2.7   # delete remote tag
     --with-keep.source \
     --library="C:/Users/cuilab/Documents/R/win-library/4.1" \
     yyeasy
+
+## git base cmd
+git push -u origin develop  ## push
+git checkout develop      ## switch to develop branch
+git checkout master       ## switch to master branch
+git merge --no-ff develop ## merge develop to master
+
 '
 
 ### usethis
