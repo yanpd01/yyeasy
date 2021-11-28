@@ -4,12 +4,18 @@ devtools::check()
 devtools::load_all()
 devtools::unload()
 devtools::build()
-# "C:\Program Files\R\R-4.1.2\bin\x64\Rcmd.exe" INSTALL --no-multiarch --with-keep.source yyeasy
+'
+git tag 0.0.3.0                      ## add git tag.
+# git tag -a v1.2 9fceb02 -m "my tag"  ## add tag for sepcific commit.
+git push origin --tags               ## push all tags to remote.
+git push origin v1.0                 ## push specific tag to remote.
 
-# "/mnt/c/Program Files/R/R-4.1.2/bin/x64/Rcmd.exe" INSTALL \
-#     --no-multiarch \
-#     --with-keep.source \
-#     yyeasy
+"C:\Program Files\R\R-4.1.2\bin\x64\Rcmd.exe" INSTALL \
+    --no-multiarch \
+    --with-keep.source \
+    --library="C:/Users/cuilab/Documents/R/win-library/4.1" \
+    yyeasy
+'
 
 ### usethis
 usethis::use_package()
