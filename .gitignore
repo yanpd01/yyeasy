@@ -38,3 +38,5 @@ vignettes/*.pdf
 ## custom
 plot_out
 .code-workspace
+.history
+.history/*

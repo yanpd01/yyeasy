@@ -12,7 +12,6 @@ remotes::install_github("yanpd01/yyeasy")
 remotes::install_git("https://gitee.com/yanpd01/yyeasy")
 
 ## install development version
-## devtools relies on the remotes package
 remotes::install_github(
     "yanpd01/yyeasy",
     ref = "develop",

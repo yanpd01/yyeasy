@@ -4,11 +4,34 @@ devtools::check()
 devtools::load_all()
 devtools::unload()
 devtools::build()
+'
+## add tag
+git tag V0.0.3.0                      ## add git tag.
+# git tag -a v1.2 9fceb02 -m "my tag"  ## add tag for sepcific commit.
+git push origin --tags               ## push all tags to remote.
+git push origin v1.0                 ## push specific tag to remote.
 
+## delete tag
+git tag -d tag_name                  # delete local tag
+git push origin :refs/tags/0.0.2.7   # delete remote tag
+
+"C:\Program Files\R\R-4.1.2\bin\x64\Rcmd.exe" INSTALL \
+    --no-multiarch \
+    --with-keep.source \
+    --library="C:/Users/cuilab/Documents/R/win-library/4.1" \
+    yyeasy
+
+## git base cmd
+git push -u origin develop  ## push
+git checkout develop      ## switch to develop branch
+git checkout master       ## switch to master branch
+git merge --no-ff develop ## merge develop to master
+
+'
 
 ### usethis
 usethis::use_package()
-usethis::use_r("plot")
+usethis::use_r("beta")
 usethis::use_data()
 
 ## install

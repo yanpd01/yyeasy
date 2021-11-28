@@ -8,6 +8,7 @@ yyread(
   filename,
   rownames = FALSE,
   header = TRUE,
+  encoding = "unknown",
   excel = FALSE,
   sheet = NULL,
   col_types = NULL,
@@ -20,6 +21,8 @@ yyread(
 \item{rownames}{Logical; whether to use the first column as the row names.}
 
 \item{header}{Logical; whether to use the first row as the col names.}
+
+\item{encoding}{Default is "unknown". Other possible options are "UTF-8" and "Latin-1".}
 
 \item{excel}{Logical; whether to read Excel files.
 It is strongly recommended to use TSV or CSV files rather than Excel files}

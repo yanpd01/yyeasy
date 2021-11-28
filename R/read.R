@@ -6,6 +6,7 @@
 #' @param filename filename
 #' @param rownames Logical; whether to use the first column as the row names.
 #' @param header Logical; whether to use the first row as the col names.
+#' @param encoding Default is "unknown". Other possible options are "UTF-8" and "Latin-1".
 #' @param excel Logical; whether to read Excel files.
 #' It is strongly recommended to use TSV or CSV files rather than Excel files
 #' @param sheet Excel option; either a string (the name of a sheet),
@@ -27,19 +28,29 @@
 yyread <- function(filename,
                    rownames = FALSE,
                    header = TRUE,
+                   encoding = "unknown",
                    excel = FALSE,
                    sheet = NULL,
                    col_types = NULL,
                    ...) {
     if (excel) {
-        tmp <- readxl::read_excel(filename,
+        warning("Reading Excel files is not a wise choice.
+        It is strongly recommended to use TSV or CSV files
+        rather than Excel files.")
+        tmp <- readxl::read_excel(
+            filename,
             sheet = sheet,
             col_names = header,
             col_types = col_types,
             ...
         )
     } else {
-        tmp <- data.table::fread(filename, header = header, ...)
+        tmp <- data.table::fread(
+            filename,
+            header = header,
+            encoding = encoding,
+            ...
+        )
     }
     df <- as.data.frame(tmp)
     if (rownames) {
@@ -71,29 +82,28 @@ yyread <- function(filename,
 #' yywrite(a1, "a1_name_no_colname.tsv", row.names = TRUE, col.names = FALSE)
 #' }
 #' @export
-yywrite <-
-    function(x,
-             file = "",
-             row.names = FALSE,
-             col.names = TRUE,
-             sep,
-             eol = c("\n", "\r\n", "\r"),
-             ...) {
-        if (missing(sep)) {
-            if (get_ext(file) == "csv") {
-                sep <- ","
-            } else {
-                sep <- "\t"
-            }
+yywrite <- function(x,
+                    file = "",
+                    row.names = FALSE,
+                    col.names = TRUE,
+                    sep,
+                    eol = c("\n", "\r\n", "\r"),
+                    ...) {
+    if (missing(sep)) {
+        if (get_ext(file) == "csv") {
+            sep <- ","
+        } else {
+            sep <- "\t"
         }
-        eol <- match.arg(eol)
-        data.table::fwrite(
-            x = x,
-            file = file,
-            row.names = row.names,
-            col.names = col.names,
-            sep = sep,
-            eol = eol,
-            ...
-        )
     }
+    eol <- match.arg(eol)
+    data.table::fwrite(
+        x = x,
+        file = file,
+        row.names = row.names,
+        col.names = col.names,
+        sep = sep,
+        eol = eol,
+        ...
+    )
+}

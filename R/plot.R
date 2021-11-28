@@ -35,15 +35,14 @@ yydev <- function(filename = "Rplot%03d.tif",
                   dpi = 600,
                   verbose = TRUE,
                   ...) {
-    ## exist
-    if (!dir.exists(path)) {
-          dir.create(path)
-      }
     ## path
-    ext <- get_ext(filename)
     fpath <- paste0(path, "/", filename)
+    dir_path <- dirname(fpath)
+    if (!dir.exists(dir_path)) {
+          dir.create(dir_path)
+      }
     ## if
-
+    ext <- get_ext(filename)
     if (ext %in% c("svg")) {
         svglite::svglite(
             filename = fpath,
@@ -76,9 +75,9 @@ yydev <- function(filename = "Rplot%03d.tif",
         stop("yyexport supports only svg, pdf, tif, jpg and png")
     }
     if (verbose) {
-          print("Don't forget to type dev.off().")
+          message("Don't forget to type dev.off().")
       }
-    print(paste0("Image will be saved to '", fpath, "'"))
+    message(paste0("Image will be saved to '", fpath, "'."))
     invisible()
 }
 
@@ -88,8 +87,8 @@ yydev <- function(filename = "Rplot%03d.tif",
 #' @export
 yyexport <- function(plot = last_plot(),
                      filename = "Rplot%03d.tif",
-                     width = 8,
-                     height = 6,
+                     width = 12,
+                     height = 12,
                      path = "./plot_out",
                      dpi = 600,
                      ...) {
@@ -102,8 +101,10 @@ yyexport <- function(plot = last_plot(),
         verbose = FALSE,
         ...
     )
-    grid::grid.draw(plot)
+    # grid::grid.draw(plot)
+    print(plot)
     grDevices::dev.off()
+    message(paste("The image size is", width, "*", height, "cm.", sep = " "))
     invisible()
 }
 
