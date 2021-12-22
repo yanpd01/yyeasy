@@ -139,7 +139,7 @@ maps_get_elevation <- function(coord,
         status <- tmp_json$status
         # status
         if (status == "OK") {
-            tmp_coords <- tmp_json$results["elevation"]
+            tmp_coords <- tmp_json$results[, "elevation"]
             break
         } else {
             print(n)

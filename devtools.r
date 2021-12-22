@@ -15,6 +15,7 @@ git push origin v1.0                 ## push specific tag to remote.
 git tag -d tag_name                  # delete local tag
 git push origin :refs/tags/0.0.2.7   # delete remote tag
 
+cd ..
 "C:\Program Files\R\R-4.1.2\bin\x64\Rcmd.exe" INSTALL \
     --no-multiarch \
     --with-keep.source \

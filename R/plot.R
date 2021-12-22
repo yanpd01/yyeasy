@@ -13,6 +13,10 @@
 #' @param ... others values from svglite::svglite, grDevices::cairo_pdf,
 #' grDevices::tiff, grDevices::jpeg, grDevices::png.
 #' @param verbose logical, whether to display prompts.
+#' @param compression tiff option, the type of compression to be used. c("none", "rle", "lzw", "jpeg", "zip", "lzw+p", "zip+p").
+#' @param fix_text_size svglite option,
+#' if TRUE each string will have the textLength CSS property set to the width
+#' calculated by systemfonts and lengthAdjust='spacingAndGlyphs'.
 #'
 #' @examples
 #' \dontrun{
@@ -29,24 +33,27 @@
 #' }
 #' @export
 yydev <- function(filename = "Rplot%03d.tif",
-                  width = 8,
-                  height = 6,
+                  width = 12,
+                  height = 12,
                   path = "./plot_out",
                   dpi = 600,
                   verbose = TRUE,
+                  compression = "lzw",
+                  fix_text_size = FALSE,
                   ...) {
     ## path
     fpath <- paste0(path, "/", filename)
     dir_path <- dirname(fpath)
     if (!dir.exists(dir_path)) {
-          dir.create(dir_path)
-      }
+        dir.create(dir_path)
+    }
     ## if
     ext <- get_ext(filename)
     if (ext %in% c("svg")) {
         svglite::svglite(
             filename = fpath,
-            width = width / 2.54, height = height / 2.54, ...
+            width = width / 2.54, height = height / 2.54,
+            fix_text_size = fix_text_size, ...
         )
     } else if (ext %in% c("pdf")) {
         grDevices::cairo_pdf(
@@ -57,7 +64,8 @@ yydev <- function(filename = "Rplot%03d.tif",
         grDevices::tiff(
             filename = fpath,
             width = width, height = height,
-            units = "cm", res = dpi, compression = "lzw", ...
+            units = "cm", res = dpi,
+            compression = compression, ...
         )
     } else if (ext %in% c("jpg", "jpeg")) {
         grDevices::jpeg(
@@ -75,8 +83,8 @@ yydev <- function(filename = "Rplot%03d.tif",
         stop("yyexport supports only svg, pdf, tif, jpg and png")
     }
     if (verbose) {
-          message("Don't forget to type dev.off().")
-      }
+        message("Don't forget to type dev.off().")
+    }
     message(paste0("Image will be saved to '", fpath, "'."))
     invisible()
 }
@@ -91,6 +99,8 @@ yyexport <- function(plot = last_plot(),
                      height = 12,
                      path = "./plot_out",
                      dpi = 600,
+                     compression = "lzw",
+                     fix_text_size = FALSE,
                      ...) {
     yydev(
         filename = filename,
@@ -99,6 +109,8 @@ yyexport <- function(plot = last_plot(),
         path = path,
         dpi = dpi,
         verbose = FALSE,
+        compression = compression,
+        fix_text_size = fix_text_size,
         ...
     )
     # grid::grid.draw(plot)

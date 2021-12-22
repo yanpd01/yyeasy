@@ -24,17 +24,19 @@ theme_bw2 <- function(font_size = 10,
             legend.key = element_blank(),
             legend.background = element_blank(),
             legend.text = element_text(size = font_size),
-            ## axis
+            # axis
             axis.text = element_text(size = font_size, color = "black"),
             axis.title = element_text(size = font_size + 1, vjust = 1),
             axis.line = element_blank(),
-            ## panel
-            panel.border = element_rect(
-                size = (line_size * 2),
-                colour = "black",
-                fill = NA
-            ),
-            panel.grid = element_blank()
+            # panel
+            panel.border = element_blank(),
+            panel.background = element_rect(size = (line_size * 2), color = "black", fill = "white"),
+            panel.grid = element_blank(),
+            # strip
+            strip.background = element_rect(fill = "grey85", color = "grey20"),
+            # plot
+            plot.background = element_blank(),
+            complete = TRUE
         )
 }
 
@@ -52,17 +54,12 @@ theme_classic2 <- function(font_size = 10,
                            font = "sans",
                            line_size = 0.5) {
     ## 常规xy轴主题
-    theme_classic() %+replace%
+    theme_bw2(font_size = font_size, font = font, line_size = line_size) %+replace%
         theme(
-            text = element_text(size = font_size, family = font),
-            ## legend
-            legend.title = element_text(size = font_size + 1),
-            legend.key = element_blank(),
-            legend.background = element_blank(),
-            legend.text = element_text(size = font_size),
             ## axis
-            axis.text = element_text(size = font_size, colour = "black"),
-            axis.title = element_text(size = font_size + 1, vjust = 1),
-            axis.line = element_line(size = line_size)
+            axis.line = element_line(size = line_size),
+            ## panel
+            panel.background = element_rect(color = NA, fill = "white"),
+            complete = TRUE
         )
 }

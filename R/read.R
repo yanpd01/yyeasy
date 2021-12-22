@@ -97,6 +97,7 @@ yywrite <- function(x,
         }
     }
     eol <- match.arg(eol)
+    if (row.names) x <- as.data.frame(x)
     data.table::fwrite(
         x = x,
         file = file,

@@ -26,12 +26,17 @@ yywrite()
 
 ## Save plots
 yydev()
+yysave()
 yyexport()
 
 ## Plot function
 pca_plot()
 pcoa_plot()
 nmds_plot()
+
+## compute alpha indexs and beta dist.
+alpha_index()
+beta_dist()
 
 ## ggplot2 themes
 theme_bw2()
@@ -44,9 +49,10 @@ yyunload()
 yyuninstall()
 
 ## Maps function
-coord_get()
-coord_rev()
-coord_trans2gaode()
+maps_get_address()
+maps_get_elevation()
+maps_get_coords()
+maps_trans2gcj02()
 
 ## Coefficient and significance marker
 get_corr()
