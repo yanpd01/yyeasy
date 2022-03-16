@@ -3,22 +3,38 @@
 \name{std_max}
 \alias{std_max}
 \alias{std_min}
+\alias{coef_std}
 \title{Max min standardization}
 \usage{
 std_max(x)
 
 std_min(x)
+
+coef_std(model)
 }
 \arguments{
 \item{x}{Numbers.}
+
+\item{model}{the result of lm function.}
 }
 \value{
 Standardized data
+
+Standardized coefficients and p_value.
 }
 \description{
 Max min standardization
+
+coef standardization
 }
 \examples{
 std_max(1:10)
 std_min(1:10)
+set.seed(1)
+a1 <- runif(100)
+a2 <- a1*runif(100, .9,1.2)*100
+a3 <- runif(100, .9,1.2)*10
+md1 <- lm(a1 ~ a2 +a3)
+coef(md1)
+coef_std(md1)
 }

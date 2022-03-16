@@ -8,11 +8,13 @@
 \usage{
 yydev(
   filename = "Rplot\%03d.tif",
-  width = 8,
-  height = 6,
+  width = 12,
+  height = 12,
   path = "./plot_out",
   dpi = 600,
   verbose = TRUE,
+  compression = "lzw",
+  fix_text_size = FALSE,
   ...
 )
 
@@ -23,6 +25,8 @@ yyexport(
   height = 12,
   path = "./plot_out",
   dpi = 600,
+  compression = "lzw",
+  fix_text_size = FALSE,
   ...
 )
 
@@ -33,6 +37,8 @@ yysave(
   height = 12,
   path = "./plot_out",
   dpi = 600,
+  compression = "lzw",
+  fix_text_size = FALSE,
   ...
 )
 }
@@ -46,6 +52,12 @@ yysave(
 \item{dpi}{Plot resolution.}
 
 \item{verbose}{logical, whether to display prompts.}
+
+\item{compression}{tiff option, the type of compression to be used. c("none", "rle", "lzw", "jpeg", "zip", "lzw+p", "zip+p").}
+
+\item{fix_text_size}{svglite option,
+if TRUE each string will have the textLength CSS property set to the width
+calculated by systemfonts and lengthAdjust='spacingAndGlyphs'.}
 
 \item{...}{others values from svglite::svglite, grDevices::cairo_pdf,
 grDevices::tiff, grDevices::jpeg, grDevices::png.}
