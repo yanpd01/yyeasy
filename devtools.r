@@ -6,8 +6,9 @@ devtools::unload()
 devtools::build()
 '
 ## git base cmd
-git add *
-git push -u origin develop  ## push
+git add .
+git commit -m "rarefy & fix map" # 将文件提交到本地仓库
+git push -u origin develop  ## push the develop repos 
 git checkout develop      ## switch to develop branch
 git checkout master       ## switch to master branch
 git merge --no-ff develop ## merge develop to master
