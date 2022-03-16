@@ -1,6 +1,6 @@
 Package: yyeasy
 Title: Easy Use R
-Version: 0.0.3.0
+Version: 0.0.3.9
 Authors@R: 
     person(given = "Pengdong",
            family = "Yan",
@@ -18,6 +18,7 @@ Imports:
     conflicted,
     data.table,
     dplyr,
+    foreach,
     ggplot2,
     ggrepel,
     grDevices,
@@ -38,5 +39,6 @@ Imports:
 Depends: 
     R (>= 4.0.0),
 Suggests:
+    curl,
     extrafont
 biocViews: Sequencing, Microbiome, Metagenomics, DataImport

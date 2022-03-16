@@ -39,8 +39,7 @@ for more infomation.
 NOTE: These functions only supoort chinese address.
 }
 \examples{
-## maps_get_coords("陕西师范大学")
-maps_get_coords("\%E9\%99\%95\%E8\%A5\%BF\%E5\%B8\%88\%E8\%8C\%83\%E5\%A4\%A7\%E5\%AD\%A6")
+maps_get_coords("陕西师范大学")
 maps_get_address("108.952560,34.204798")
 maps_get_elevation("108.952560,34.204798")
 maps_trans2gcj02("108.952560,34.204798", type = "baidu")

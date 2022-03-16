@@ -34,9 +34,6 @@ yyread <- function(filename,
                    col_types = NULL,
                    ...) {
     if (excel) {
-        warning("Reading Excel files is not a wise choice.
-        It is strongly recommended to use TSV or CSV files
-        rather than Excel files.")
         tmp <- readxl::read_excel(
             filename,
             sheet = sheet,

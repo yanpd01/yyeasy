@@ -7,6 +7,8 @@
 \alias{\%T>\%}
 \alias{read.newick}
 \alias{clipboard}
+\alias{\%do\%}
+\alias{foreach}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -14,6 +16,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{foreach}{\code{\link[foreach:foreach]{\%do\%}}, \code{\link[foreach]{foreach}}}
+
   \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}, \code{\link[magrittr:tee]{\%T>\%}}}
 
   \item{readr}{\code{\link[readr]{clipboard}}}

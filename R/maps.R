@@ -13,8 +13,7 @@
 #' @param output output type, default is JSON.
 #' @return coordinates of amap(GCJ-02). Or the Chinese address.
 #' @examples
-#' ## maps_get_coords("陕西师范大学")
-#' maps_get_coords("%E9%99%95%E8%A5%BF%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6")
+#' maps_get_coords("陕西师范大学")
 #' maps_get_address("108.952560,34.204798")
 #' maps_get_elevation("108.952560,34.204798")
 #' maps_trans2gcj02("108.952560,34.204798", type = "baidu")
@@ -31,12 +30,10 @@ maps_trans2gcj02 <- function(coord,
         "&output=", output
     ) %>%
         utils::URLencode()
+    # message(tmp_url)
     n <- 1
     while (n <= 2) {
-        tmp_json <- jsonlite::fromJSON(paste(
-            readLines(tmp_url, warn = F, encoding = "UTF-8"),
-            collapse = ""
-        ))
+        tmp_json <- jsonlite::fromJSON(tmp_url)
         status <- tmp_json$status
         # status
         if (status == 1) {
@@ -64,12 +61,10 @@ maps_get_coords <- function(address,
         "&output=", output
     ) %>%
         utils::URLencode()
+    # message(tmp_url)
     n <- 1
     while (n <= 2) {
-        tmp_json <- jsonlite::fromJSON(paste(
-            readLines(tmp_url, warn = F, encoding = "UTF-8"),
-            collapse = ""
-        ))
+        tmp_json <- jsonlite::fromJSON(tmp_url)
         status <- tmp_json$status
         # status
         if (status == 1) {
@@ -98,12 +93,10 @@ maps_get_address <- function(coord,
         "&output=", output
     ) %>%
         utils::URLencode()
+    # message(tmp_url)
     n <- 1
     while (n <= 2) {
-        tmp_json <- jsonlite::fromJSON(paste(
-            readLines(tmp_url, warn = F, encoding = "UTF-8"),
-            collapse = ""
-        ))
+        tmp_json <- jsonlite::fromJSON(tmp_url)
         status <- tmp_json$status
         # status
         if (status == 1) {
@@ -130,12 +123,10 @@ maps_get_elevation <- function(coord,
         "&locations=", locations
     ) %>%
         utils::URLencode()
+    # message(tmp_url)
     n <- 1
     while (n <= 2) {
-        tmp_json <- jsonlite::fromJSON(paste(
-            readLines(tmp_url, warn = F, encoding = "UTF-8"),
-            collapse = ""
-        ))
+        tmp_json <- jsonlite::fromJSON(tmp_url)
         status <- tmp_json$status
         # status
         if (status == "OK") {

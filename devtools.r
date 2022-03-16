@@ -1,12 +1,19 @@
-### devtools
+## devtools
 devtools::document(roclets = c("rd", "collate", "namespace"))
 devtools::check()
 devtools::load_all()
 devtools::unload()
 devtools::build()
 '
+## git base cmd
+git add *
+git push -u origin develop  ## push
+git checkout develop      ## switch to develop branch
+git checkout master       ## switch to master branch
+git merge --no-ff develop ## merge develop to master
+
 ## add tag
-git tag V0.0.3.0                      ## add git tag.
+git tag V0.0.3.9                      ## add git tag.
 # git tag -a v1.2 9fceb02 -m "my tag"  ## add tag for sepcific commit.
 git push origin --tags               ## push all tags to remote.
 git push origin v1.0                 ## push specific tag to remote.
@@ -21,17 +28,10 @@ cd ..
     --with-keep.source \
     --library="C:/Users/cuilab/Documents/R/win-library/4.1" \
     yyeasy
-
-## git base cmd
-git push -u origin develop  ## push
-git checkout develop      ## switch to develop branch
-git checkout master       ## switch to master branch
-git merge --no-ff develop ## merge develop to master
-
 '
 
 ### usethis
-usethis::use_package()
+usethis::use_package("foreach")
 usethis::use_r("beta")
 usethis::use_data()
 

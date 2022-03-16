@@ -15,6 +15,13 @@ treeio::read.newick
 #' @export
 readr::clipboard
 
+#' @importFrom foreach %do%
+#' @export
+foreach::`%do%`
+
+#' @importFrom foreach foreach
+#' @export
+foreach::foreach
 
 # ## for depends and attach (move to auto library)------------------------------------------------------
 # #' at import vegan
