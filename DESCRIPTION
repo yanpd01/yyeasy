@@ -1,6 +1,6 @@
 Package: yyeasy
 Title: Easy Use R
-Version: 0.0.4.0
+Version: 0.0.4.1
 Authors@R: 
     person(given = "Pengdong",
            family = "Yan",
@@ -11,7 +11,7 @@ Description: Easy read, Easy write, Easy save, Easy use.
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Imports: 
     agricolae,
     ape,
@@ -22,8 +22,6 @@ Imports:
     foreach,
     ggplot2,
     ggrepel,
-    grDevices,
-    grid,
     jsonlite,
     magrittr,
     phyloseq,
@@ -35,7 +33,6 @@ Imports:
     svglite,
     tibble,
     tidyr,
-    tools,
     treeio,
     vegan
 Depends: 

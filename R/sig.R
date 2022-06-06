@@ -59,9 +59,10 @@ get_sig <- function(p_value, level = 3, p_adj_method = "none") {
 #' @param test the name of the statistical test that is applied to the values.
 #' "wilcox_test", "t_test", "dunn_test", "tukey_hsd" comes from rstatix,
 #' "HSD.test", "duncan.test", "LSD.test", "SNK.test" comes from agricolae.
-#' @param p.adjust.method method to adjust p values for multiple comparisons. 
+#' @param p.adjust.method method to adjust p values for multiple comparisons.
 #' This parameter only works with the test method from rstatix.
 #' @param alpha Significant level
+#' @param quantile_function Quantile function to compute the confidence interval. Default is \code{qt} which means the \eqn{t} distribution and \code{qnorm} means \eqn{norm} distribution.
 #' @return Difference analysis results and significance labeling.
 #'
 #' @examples
@@ -73,14 +74,17 @@ sig_label <- function(formula, data,
                           "HSD.test", "duncan.test", "LSD.test", "SNK.test"
                       ),
                       p.adjust.method = "none",
-                      alpha = 0.05) {
+                      alpha = 0.05,
+                      quantile_function = "qt") {
     fm <- formula(formula)
     test <- match.arg(test)
+    qt_fun <- eval(parse(text = paste0("stats::", quantile_function)))
     t0 <- stats::aggregate(fm, data, mean) %>% tibble::column_to_rownames(colnames(.)[1])
     t0_sd <- stats::aggregate(fm, data, sd) %>% tibble::column_to_rownames(colnames(.)[1])
     id <- rownames(t0)
     id_y <- deparse(fm[[2]])
     id_x <- deparse(fm[[3]])
+    id_n <- as.numeric(table(data[, id_x])[id])
     if (test %in% c("wilcox_test", "t_test", "dunn_test", "tukey_hsd")) {
         test_fun <- eval(parse(text = paste0("rstatix::", test)))
         t1 <-
@@ -105,8 +109,20 @@ sig_label <- function(formula, data,
         test_fun <- eval(parse(text = paste0("agricolae::", test)))
         df_out <- test_fun(stats::aov(fm, data), id_x, alpha = alpha)$groups[id, ]
     }
-    colnames(df_out)[1] <- "mean"
-    t7 <- cbind(df_out, sd = t0_sd[id, ], term = id_y) %>% dplyr::select(4, 1, 3, 2)
+
+    t7 <- data.frame(
+        y_term = id_y,
+        x_term = id_x,
+        x_level = id,
+        label = df_out[, 2],
+        mean = df_out[, 1],
+        n = id_n,
+        sd = t0_sd[id, ],
+        row.names = id
+    ) %>% mutate(
+        se = sd / sqrt(n),
+        ci = sd / sqrt(n) * qt_fun(1 - alpha / 2, n - 1),
+    )
     message(
         "Difference test method: ", test,
         "\nAlpha: ", alpha,
@@ -114,5 +130,3 @@ sig_label <- function(formula, data,
     )
     return(t7)
 }
-
-

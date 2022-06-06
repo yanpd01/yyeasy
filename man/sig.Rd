@@ -14,7 +14,8 @@ sig_label(
   test = c("wilcox_test", "t_test", "dunn_test", "tukey_hsd", "HSD.test",
     "duncan.test", "LSD.test", "SNK.test"),
   p.adjust.method = "none",
-  alpha = 0.05
+  alpha = 0.05,
+  quantile_function = "qt"
 )
 }
 \arguments{
@@ -38,6 +39,8 @@ giving the corresponding groups. For example, formula = TP53 ~ cancer_group.}
 This parameter only works with the test method from rstatix.}
 
 \item{alpha}{Significant level}
+
+\item{quantile_function}{Quantile function to compute the confidence interval. Default is \code{qt} which means the \eqn{t} distribution and \code{qnorm} means \eqn{norm} distribution.}
 }
 \value{
 Convert significance numbers to ***.
