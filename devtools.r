@@ -7,7 +7,7 @@ devtools::build()
 '
 ## git base cmd
 git add .
-git commit -m "sig label" # 将文件提交到本地仓库
+git commit -m "optimize sig label" # 将文件提交到本地仓库
 git push -u origin develop  ## push the develop repos 
 git checkout develop      ## switch to develop branch
 git checkout master       ## switch to master branch
