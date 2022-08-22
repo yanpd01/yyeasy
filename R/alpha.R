@@ -43,6 +43,7 @@ alpha_index <- function(otu, tree) {
 #'
 #' @return rarefy table
 #' @examples
+#' library(phyloseq)
 #' data(its)
 #' phy <- phyloseq(otu_table(its, taxa_are_rows = TRUE))
 #' rare <- rarefy_otu(phy)

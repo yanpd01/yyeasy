@@ -1,19 +1,15 @@
 ## for reexports ---------------------------------------------------------------
-#' @importFrom magrittr %>% %T>%
+#' @importFrom magrittr %>% %T>% %<>% %$%
 #' @export
 magrittr::`%>%`
 
 #' @export
 magrittr::`%T>%`
 
+magrittr::`%<>%`
 
-#' @importFrom treeio read.newick
 #' @export
-treeio::read.newick
-
-#' @importFrom readr clipboard
-#' @export
-readr::clipboard
+magrittr::`%$%`
 
 #' @importFrom foreach %do%
 #' @export
@@ -23,6 +19,6 @@ foreach::`%do%`
 #' @export
 foreach::foreach
 
-# ## for depends and attach (move to auto library)------------------------------------------------------
+# ## for depends and attach (move to pkgs.R 'auto library')---------------------
 # #' at import vegan
 # NULL

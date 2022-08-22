@@ -11,8 +11,8 @@ get_sig(p_value, level = 3, p_adj_method = "none")
 sig_label(
   formula,
   data,
-  test = c("wilcox_test", "t_test", "dunn_test", "tukey_hsd", "HSD.test",
-    "duncan.test", "LSD.test", "SNK.test"),
+  test = c("wilcox_test", "t_test", "dunn_test", "tukey_hsd", "HSD.test", "duncan.test",
+    "LSD.test", "SNK.test"),
   p.adjust.method = "none",
   alpha = 0.05,
   quantile_function = "qt"

@@ -152,10 +152,14 @@ amap_key <- paste0(tmp_ak1, tmp_ak2, tmp_ak3, tmp_ak4, tmp_ak5)
 
 tmp_gk1 <- paste0(LETTERS[c(1, 9)], collapse = "")
 tmp_gk2 <- paste0(letters[c(26, 1)], collapse = "")
-tmp_gk3 <- "SyBazjXtRY"
-tmp_gk4 <- paste0(letters[c(4, 2, 6, 19)], collapse = "")
-tmp_gk5 <- "HUrL9x0I-x8yGWJzw1r"
-tmp_gk6 <- paste0((9 - 2), "c")
-google_key <- paste0(tmp_gk1, tmp_gk2, tmp_gk3, tmp_gk4, tmp_gk5, tmp_gk6)
+tmp_gk3 <- paste0(LETTERS[c(20, 11, 4)], collapse = "")
+tmp_gk4 <- paste0(LETTERS[c(20, 14, 26, 24)], collapse = "")
+tmp_gk5 <- "s2AhLXv1Lj"
+tmp_gk6 <- paste0(LETTERS[c(2, 19, 3, 3)], collapse = "")
+google_key <-
+    paste0(
+        tmp_gk1, tmp_gk2, "SyA-E_A", "l", tmp_gk3,
+        9 - 3, tmp_gk4, tmp_gk5, tmp_gk6, "kFWkg"
+        )
 
 ####### key over ##########
