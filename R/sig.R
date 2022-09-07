@@ -20,11 +20,11 @@ get_sig <- function(p_value, level = 3, p_adj_method = "none") {
     df[is.na(df)] <- 1
     df[df < 0] <- 1
     ## get address
-    add_0 <- df >= 0.05
-    add_1 <- df < 0.05 & df >= 0
-    add_2 <- df < 0.01 & df >= 0
-    add_3 <- df < 0.001 & df >= 0
-    add_4 <- df < 0.0001 & df >= 0
+    add_0 <- df > 0.05
+    add_1 <- df <= 0.05 & df > 0
+    add_2 <- df <= 0.01 & df > 0
+    add_3 <- df <= 0.001 & df > 0
+    add_4 <- df <= 0.0001 & df > 0
     ## *****
     df[add_0] <- ""
     df[add_1] <- "*"
