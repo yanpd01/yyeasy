@@ -2,7 +2,6 @@
 % Please edit documentation in R/plot.R
 \name{yydev}
 \alias{yydev}
-\alias{yyexport}
 \alias{yysave}
 \title{yyplot}
 \usage{
@@ -10,21 +9,9 @@ yydev(
   filename = "Rplot\%03d.tif",
   width = 12,
   height = 12,
-  path = "./plot_out",
-  dpi = 600,
+  path,
+  dpi = 300,
   verbose = TRUE,
-  compression = "lzw",
-  fix_text_size = FALSE,
-  ...
-)
-
-yyexport(
-  plot = last_plot(),
-  filename = "Rplot\%03d.tif",
-  width = 12,
-  height = 12,
-  path = "./plot_out",
-  dpi = 600,
   compression = "lzw",
   fix_text_size = FALSE,
   ...
@@ -35,8 +22,8 @@ yysave(
   filename = "Rplot\%03d.tif",
   width = 12,
   height = 12,
-  path = "./plot_out",
-  dpi = 600,
+  path,
+  dpi = 300,
   compression = "lzw",
   fix_text_size = FALSE,
   ...
@@ -78,6 +65,6 @@ dev.off()
 ## Export the ggplot image directly.
 ggplot(mtcars, aes(mpg, wt)) +
     geom_point()
-yyexport(filename = "tmp003.pdf")
+yysave(filename = "tmp003.pdf")
 }
 }

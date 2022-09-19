@@ -7,6 +7,7 @@
 #'
 #' @return The effect of each factor alone.
 #' @examples
+#' library(vegan)
 #' data(dune)
 #' data(dune.env)
 #' anova_ca_simple_effect(dune, dune.env, "RDA", 499)

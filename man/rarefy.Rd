@@ -27,6 +27,7 @@ rarefy table
 Prepare data for rerafy curves.
 }
 \examples{
+library(phyloseq)
 data(its)
 phy <- phyloseq(otu_table(its, taxa_are_rows = TRUE))
 rare <- rarefy_otu(phy)

@@ -70,10 +70,13 @@ run_unload <- function(pkg) {
 
 .onAttach <- function(...) {
     core <- c(
-        "vegan",
-        "tibble", "dplyr", "ggplot2",
-        "tidyr", "stringr",
-        "phyloseq"
+        # "vegan",
+        "tibble",
+        "dplyr",
+        "ggplot2",
+        "tidyr",
+        "stringr"
+        # "phyloseq"
     )
     packageStartupMessage(
         "The following packages will be attached.\n",

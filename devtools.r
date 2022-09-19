@@ -1,3 +1,4 @@
+
 ## devtools
 devtools::document(roclets = c("rd", "collate", "namespace"))
 devtools::check()
@@ -7,7 +8,7 @@ devtools::build()
 '
 ## git base cmd
 git add .
-git commit -m "rarefy & fix map" # 将文件提交到本地仓库
+git commit -m "optimize devtoos.R label" # 将文件提交到本地仓库
 git push -u origin develop  ## push the develop repos 
 git checkout develop      ## switch to develop branch
 git checkout master       ## switch to master branch
