@@ -119,7 +119,7 @@ sig_label <- function(formula, data,
         n = id_n,
         sd = t0_sd[id, ],
         row.names = id
-    ) %>% mutate(
+    ) %>% dplyr::mutate(
         se = sd / sqrt(n),
         ci = sd / sqrt(n) * qt_fun(1 - alpha / 2, n - 1),
     )

@@ -1,6 +1,6 @@
 Package: yyeasy
 Title: Easy Use R
-Version: 0.0.4.5
+Version: 0.0.4.6
 Authors@R: 
     person(given = "Pengdong",
            family = "Yan",

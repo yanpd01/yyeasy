@@ -29,20 +29,24 @@
 #' ## Export the ggplot image directly.
 #' ggplot(mtcars, aes(mpg, wt)) +
 #'     geom_point()
-#' yyexport(filename = "tmp003.pdf")
+#' yysave(filename = "tmp003.pdf")
 #' }
 #' @export
 yydev <- function(filename = "Rplot%03d.tif",
                   width = 12,
                   height = 12,
-                  path = ".",
-                  dpi = 600,
+                  path,
+                  dpi = 300,
                   verbose = TRUE,
                   compression = "lzw",
                   fix_text_size = FALSE,
                   ...) {
     ## path
-    fpath <- paste0(path, "/", filename)
+    if (missing(path)) {
+        fpath <- filename
+    } else {
+        fpath <- paste0(path, "/", filename)
+    }
     dir_path <- dirname(fpath)
     if (!dir.exists(dir_path)) {
         dir.create(dir_path)
@@ -80,7 +84,7 @@ yydev <- function(filename = "Rplot%03d.tif",
             units = "cm", res = dpi, ...
         )
     } else {
-        stop("yyexport supports only svg, pdf, tif, jpg and png")
+        stop("yysave / yydev supports only svg, pdf, tif, jpg and png")
     }
     if (verbose) {
         message("Don't forget to type dev.off().")
@@ -93,12 +97,12 @@ yydev <- function(filename = "Rplot%03d.tif",
 
 #' @rdname yyplot
 #' @export
-yyexport <- function(plot = last_plot(),
+yysave <- function(plot = last_plot(),
                      filename = "Rplot%03d.tif",
                      width = 12,
                      height = 12,
-                     path = ".",
-                     dpi = 600,
+                     path,
+                     dpi = 300,
                      compression = "lzw",
                      fix_text_size = FALSE,
                      ...) {
@@ -120,6 +124,3 @@ yyexport <- function(plot = last_plot(),
     invisible()
 }
 
-#' @rdname yyplot
-#' @export
-yysave <- yyexport
