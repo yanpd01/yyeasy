@@ -17,7 +17,7 @@ git commit -m "fix yyread" # 将文件提交到本地仓库
 git push -u origin master  ## push the develop repos 
 git tag V0.0.5.1
 git push origin V0.0.5.1
-
+git commit --amend       ## 修改注释
 
 ## branch --------------------------------------------------------
 git checkout develop              ## switch to develop branch
@@ -38,6 +38,7 @@ git push origin :refs/tags/V0.0.5.0   # delete remote tag
 git reset --soft HEAD^    ## 撤销上次提交
 git reset --soft HEAD~1   ## 撤销上次提交
 git reset --soft HEAD~2   ## 撤销上两次提交
+
 ```
 
 ```{bash install}
