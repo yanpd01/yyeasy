@@ -11,25 +11,33 @@ devtools::build()
 ```
 
 ```{bash git}
-## git base cmd
+## git common -----------------------------------------------------
 git add .
-git commit -m "optimize devtoos.R label" # 将文件提交到本地仓库
-git push -u origin develop  ## push the develop repos 
+git commit -m "fix yyread" # 将文件提交到本地仓库
+git push -u origin master  ## push the develop repos 
+git tag V0.0.5.1
+git push origin V0.0.5.1
 
-## switch branch and merge develop into master.
-git checkout develop      ## switch to develop branch
-git checkout master       ## switch to master branch
-git merge --no-ff develop ## merge develop to master
 
-## add tag
+## branch --------------------------------------------------------
+git checkout develop              ## switch to develop branch
+git checkout master               ## switch to master branch
+git merge --no-ff develop         ## merge develop to master
+git branch -d develop             ## delete local branch
+git push origin --delete develop  ## delete remote branch
+
+## tag -----------------------------------------------------------
 # git tag -a v1.2 9fceb02 -m "my tag"  ## add tag for sepcific commit.
 git tag V0.0.5.0                      ## add git tag.
 git push origin --tags               ## push all tags to remote.
 git push origin v1.0                 ## push specific tag to remote.
+git tag -d V0.0.5.0                  # delete local tag
+git push origin :refs/tags/V0.0.5.0   # delete remote tag
 
-## delete tag
-git tag -d tag_name                  # delete local tag
-git push origin :refs/tags/0.0.2.7   # delete remote tag
+## 
+git reset --soft HEAD^    ## 撤销上次提交
+git reset --soft HEAD~1   ## 撤销上次提交
+git reset --soft HEAD~2   ## 撤销上两次提交
 ```
 
 ```{bash install}
@@ -42,11 +50,7 @@ cd ..
 ```
 
 ```{r install}
-remotes::install_github(
-    "yanpd01/yyeasy",
-    ref = "develop",
-    upgrade = "never"
-)
+remotes::install_github("yanpd01/yyeasy", upgrade = "never")
 ```
 
 

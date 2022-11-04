@@ -59,10 +59,10 @@ yyread <- function(filename,
         )
     }
     # df <- as.data.frame(tmp)
-    df < tmp
+    df <- tmp
     if (rownames) {
         df <- df %>%
-            tibble::column_to_rownames(var = colnames(df)[1])
+            tibble::column_to_rownames(var = colnames(.)[1])
     }
     return(df)
 }

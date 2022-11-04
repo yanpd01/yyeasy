@@ -4,19 +4,15 @@
 A small toolbox for easy use with R. 
 
 ## Installation tutorial
+
 ```r
 ## from github
-remotes::install_github("yanpd01/yyeasy")
+remotes::install_github("yanpd01/yyeasy", upgrade = "never")
 
 ## from gitee
-remotes::install_git("https://gitee.com/yanpd01/yyeasy")
+remotes::install_git("https://gitee.com/yanpd01/yyeasy", upgrade = "never")
 
-## install development version
-remotes::install_github(
-    "yanpd01/yyeasy",
-    ref = "develop",
-    upgrade = "never"
-)
+
 ```
 ## Function
 ```r
@@ -27,7 +23,6 @@ yywrite()
 ## Save plots
 yydev()
 yysave()
-yyexport()
 
 ## Plot function
 pca_plot()
