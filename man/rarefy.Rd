@@ -40,7 +40,8 @@ ggplot(rare, aes(Depth, Observed, group = id, color = id)) +
     stat_summary(fun = "mean", geom = "smooth", size = .7) +
     stat_summary(
         fun.data = "mean_cl_normal", geom = "errorbar",
-        size = .5, aes(width = max(Depth) / 30)) +
+        size = .5, aes(width = max(Depth) / 30)
+    ) +
     theme_bw2(15) +
     theme(legend.justification = c(1, 0), legend.position = c(1, 0))
 }

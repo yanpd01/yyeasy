@@ -7,8 +7,9 @@
 yywrite(
   x,
   file = "",
-  row.names = FALSE,
+  rownames.id,
   col.names = TRUE,
+  method = c("vroom", "write"),
   sep,
   eol = c("\\n", "\\r\\n", "\\r"),
   ...
@@ -19,16 +20,20 @@ yywrite(
 
 \item{file}{Output file name. \code{""} indicates output to the console. }
 
-\item{row.names}{Should row names be written? For compatibility with \code{data.frame} and \code{write.csv} since \code{data.table} never has row names. Hence default \code{FALSE} unlike \code{write.csv}.}
+\item{rownames.id}{A string: the name of a new column. Existing rownames are
+transferred into this column and the row.names attribute is deleted.}
 
 \item{col.names}{Should the column names (header row) be written? The default is \code{TRUE} for new files and when overwriting existing files (\code{append=FALSE}). Otherwise, the default is \code{FALSE} to prevent column names appearing again mid-file when stacking a set of \code{data.table}s or appending rows to the end of a file.}
+
+\item{method}{c("vroom", "fwrite"). The function used to write file, the default is "vroom".}
 
 \item{sep}{The separator between columns.
 Default "," for "csv" file; "\\t" otherswise.}
 
 \item{eol}{Default "\\n", you can also use "\\r\\n" and "\\r".}
 
-\item{...}{others values from ?data.table::fwrite.}
+\item{...}{others params from \code{\link[vroom:vroom_write]{vroom::vroom_write()}} or \code{\link[data.table:fwrite]{data.table::fwrite()}}.
+Just like "num_threads" in vroom; "nThread" in data.table.}
 }
 \description{
 Function from data.table.

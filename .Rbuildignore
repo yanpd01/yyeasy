@@ -1,5 +1,5 @@
 ^LICENSE.*$
-^devtools.r$
+^devtools.rmd$
 ^plot_out$
 ^.*\.code-workspace$
 ^.*\.Rproj$

@@ -8,10 +8,10 @@ yyread(
   filename,
   rownames = FALSE,
   header = TRUE,
-  encoding = "unknown",
-  excel = FALSE,
+  method = c("vroom", "fread", "excel"),
   sheet = NULL,
   col_types = NULL,
+  encoding = "unknown",
   ...
 )
 }
@@ -22,9 +22,7 @@ yyread(
 
 \item{header}{Logical; whether to use the first row as the col names.}
 
-\item{encoding}{Default is "unknown". Other possible options are "UTF-8" and "Latin-1".}
-
-\item{excel}{Logical; whether to read Excel files.
+\item{method}{c("vroom", "fread", "excel"). The function used to read the file, the default is "vroom".
 It is strongly recommended to use TSV or CSV files rather than Excel files}
 
 \item{sheet}{Excel option; either a string (the name of a sheet),
@@ -34,10 +32,13 @@ or an integer (the position of the sheet).}
 A character vector containing these options:
 "skip", "guess", "logical", "numeric", "date", "text" or "list".
 If exactly one col_type is specified, it will be recycled.
-The content of a cell in a skipped column is never read
+The content of a cell in a skipped column is never read}
+
+\item{encoding}{Default is "unknown". Other possible options are "UTF-8" and "Latin-1".
 and that column will not appear in the data frame output.}
 
-\item{...}{Others values from ?readxl::read_excel and ?data.table::fread.}
+\item{...}{Others params from \code{\link[vroom:vroom]{vroom::vroom()}}, \code{\link[data.table:fread]{data.table::fread()}} or \code{\link[readxl:read_excel]{readxl::read_excel()}}.
+Just like "num_threads" in vroom; "nThread" in data.table.}
 }
 \description{
 Function from data.table, readxl.
@@ -45,6 +46,6 @@ Function from data.table, readxl.
 \examples{
 \dontrun{
 yyread("a1.tsv")
-yyread("a1.xls", excel = TRUE)
+yyread("a1.xls", method = "excel")
 }
 }
