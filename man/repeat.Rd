@@ -29,6 +29,6 @@ repeat results
 repeat run
 }
 \examples{
-rep_run('sum(1:10)')
-'runif(10)' \%>\% rep_run(5, .combine = rbind)
+rep_run("sum(1:10)")
+"runif(10)" \%>\% rep_run(5, .combine = rbind)
 }

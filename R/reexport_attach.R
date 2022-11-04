@@ -1,24 +1,31 @@
-## for reexports ---------------------------------------------------------------
+# for reexports ---------------------------------------------------------------
 #' @importFrom magrittr %>% %T>% %<>% %$%
 #' @export
 magrittr::`%>%`
 
-#' @export
-magrittr::`%T>%`
-
-magrittr::`%<>%`
-
-#' @export
-magrittr::`%$%`
-
-#' @importFrom foreach %do%
+#' @importFrom foreach %do% foreach
 #' @export
 foreach::`%do%`
-
-#' @importFrom foreach foreach
 #' @export
 foreach::foreach
 
-# ## for depends and attach (move to pkgs.R 'auto library')---------------------
-# #' at import vegan
-# NULL
+#' @importFrom rstatix t_test
+#' @export
+rstatix::t_test
+
+
+#' @importFrom vroom vroom vroom_write
+#' @export
+vroom::vroom
+#' @export
+vroom::vroom_write
+
+#' @importFrom data.table fread fwrite
+#' @export
+data.table::fread
+#' @export
+data.table::fwrite
+
+#' @importFrom readxl read_excel
+#' @export
+readxl::read_excel

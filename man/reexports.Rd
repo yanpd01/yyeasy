@@ -4,10 +4,14 @@
 \name{reexports}
 \alias{reexports}
 \alias{\%>\%}
-\alias{\%T>\%}
-\alias{\%$\%}
 \alias{\%do\%}
 \alias{foreach}
+\alias{t_test}
+\alias{vroom}
+\alias{vroom_write}
+\alias{fread}
+\alias{fwrite}
+\alias{read_excel}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -15,8 +19,16 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{data.table}{\code{\link[data.table]{fread}}, \code{\link[data.table]{fwrite}}}
+
   \item{foreach}{\code{\link[foreach:foreach]{\%do\%}}, \code{\link[foreach]{foreach}}}
 
-  \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}, \code{\link[magrittr:exposition]{\%$\%}}, \code{\link[magrittr:tee]{\%T>\%}}}
+  \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}}
+
+  \item{readxl}{\code{\link[readxl]{read_excel}}}
+
+  \item{rstatix}{\code{\link[rstatix]{t_test}}}
+
+  \item{vroom}{\code{\link[vroom]{vroom}}, \code{\link[vroom]{vroom_write}}}
 }}
 

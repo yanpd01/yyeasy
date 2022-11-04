@@ -25,7 +25,7 @@ alpha_index <- function(otu, tree) {
     index$Goods_coverage <- 1 - colSums(df == 1) / colSums(df)
     ## missing
     if (!missing(tree)) {
-        index$PD_whole_tree <- picante::pd(tdf, tree, include.root = T)[, 1]
+        index$PD_whole_tree <- picante::pd(tdf, tree, include.root = TRUE)[, 1]
     }
     # index <- tibble::rownames_to_column(index, "id")
     return(index)
@@ -56,7 +56,8 @@ alpha_index <- function(otu, tree) {
 #'     stat_summary(fun = "mean", geom = "smooth", size = .7) +
 #'     stat_summary(
 #'         fun.data = "mean_cl_normal", geom = "errorbar",
-#'         size = .5, aes(width = max(Depth) / 30)) +
+#'         size = .5, aes(width = max(Depth) / 30)
+#'     ) +
 #'     theme_bw2(15) +
 #'     theme(legend.justification = c(1, 0), legend.position = c(1, 0))
 #' @export
@@ -66,7 +67,7 @@ rarefy_otu <- function(phy, step = 10, rep = 3, measures = c("Observed", "Shanno
     step_all <- floor(seq(1, max(sums), length.out = step))[-step]
     df_out3 <-
         foreach::foreach(step_now = step_all, .combine = rbind) %do% {
-                message("The Depth is ", step_now)
+            message("The Depth is ", step_now)
             foreach::foreach(i = seq_len(rep), .combine = rbind) %do% {
                 df_out <- phyloseq::prune_samples(sums >= step_now, otu) %>%
                     phyloseq::rarefy_even_depth(sample.size = step_now, replace = FALSE, verbose = FALSE, trimOTUs = FALSE) %>%
@@ -92,10 +93,10 @@ rarefy_otu <- function(phy, step = 10, rep = 3, measures = c("Observed", "Shanno
 #'
 #' @return repeat results
 #' @examples
-#' rep_run('sum(1:10)')
-#' 'runif(10)' %>% rep_run(5, .combine = rbind)
+#' rep_run("sum(1:10)")
+#' "runif(10)" %>% rep_run(5, .combine = rbind)
 #' @export
 rep_run <- function(exp, times = 3, .combine = list, ...) {
-foreach::foreach(i = seq_len(times), .combine = .combine, ...) %do%
-    eval(parse(text = exp))
+    foreach::foreach(i = seq_len(times), .combine = .combine, ...) %do%
+        eval(parse(text = exp))
 }
