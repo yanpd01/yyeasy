@@ -1,56 +1,40 @@
-# yyeasy
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Introduction
-A small toolbox for easy use with R. 
+# yyeasy: Easily draw sectors with grid and ggplot2
 
-## Installation tutorial
+<!-- badges: start -->
 
-```r
-## from github
-remotes::install_github("yanpd01/yyeasy", upgrade = "never")
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/yyeasy)](https://cran.r-project.org/package=yyeasy) -->
+[![](https://img.shields.io/badge/devel%20version-0.5.2-green.svg)](https://github.com/yanpd01/yyeasy)
 
-## from gitee
-remotes::install_git("https://gitee.com/yanpd01/yyeasy", upgrade = "never")
+<!-- ![](https://img.shields.io/badge/platforms-all-green.svg) -->
 
+![](https://img.shields.io/badge/Windows-passing-green.svg)
+![](https://img.shields.io/badge/Linux-passing-green.svg)
+<!-- badges: end -->
 
+Easy read, Easy write, Easy save, Easy use.
+
+## :writing_hand: Authors
+
+Pengdong Yan
+
+## :arrow_double_down: Installation
+
+Get the development version from github or gitee:
+
+``` r
+## install.packages("remotes")
+# from github
+remotes::install_github("yanpd01/yyeasy")
+# from gitee
+remotes::install_git("https://gitee.com/yanpd01/yyeasy")
 ```
-## Function
-```r
-## Read and write files.
-yyread()
-yywrite()
 
-## Save plots
-yydev()
-yysave()
+## :books: Usage
 
-## Plot function
-pca_plot()
-pcoa_plot()
-nmds_plot()
-
-## compute alpha indexs and beta dist.
-alpha_index()
-beta_dist()
-
-## ggplot2 themes
-theme_bw2()
-theme_classic2()
-
-## Packages function
-yyinstall()
-yyload()
-yyunload()
-yyuninstall()
-
-## Maps function
-maps_get_address()
-maps_get_elevation()
-maps_get_coords()
-maps_trans2gcj02()
-
-## Coefficient and significance marker
-get_corr()
-get_corr_sig()
-get_sig()
-```
+For the usage of this R package, please type `?function` after
+installation to view it. There are detailed case descriptions in it.

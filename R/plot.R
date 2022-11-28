@@ -98,14 +98,14 @@ yydev <- function(filename = "Rplot%03d.tif",
 #' @rdname yyplot
 #' @export
 yysave <- function(plot = last_plot(),
-                     filename = "Rplot%03d.tif",
-                     width = 12,
-                     height = 12,
-                     path,
-                     dpi = 300,
-                     compression = "lzw",
-                     fix_text_size = FALSE,
-                     ...) {
+                   filename = "Rplot%03d.tif",
+                   width = 12,
+                   height = 12,
+                   path,
+                   dpi = 300,
+                   compression = "lzw",
+                   fix_text_size = FALSE,
+                   ...) {
     yydev(
         filename = filename,
         width = width,
@@ -118,9 +118,8 @@ yysave <- function(plot = last_plot(),
         ...
     )
     # grid::grid.draw(plot)
+    on.exit(grDevices::dev.off())
     print(plot)
-    grDevices::dev.off()
     message(paste("The image size is", width, "*", height, "cm.", sep = " "))
     invisible()
 }
-

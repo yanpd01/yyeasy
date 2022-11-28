@@ -1,8 +1,8 @@
+^\.Rproj\.user$
+^.*\.Rproj$
+^\.Rhistory
 ^LICENSE.*$
 ^devtools.rmd$
-^plot_out$
 ^.*\.code-workspace$
-^.*\.Rproj$
-^\.Rproj\.user$
-^\.Rhistory
-^\.history
+^README\.Rmd$
+^README\.md$
